@@ -28,10 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    <meta charset="utf-8">
    <meta http-equiv="x-ua-compatible" content="ie=edge">
    <title>Indian Basket | Login</title>
-<<<<<<< HEAD
-   <meta name="description" content="">
-=======
->>>>>>> dd2f0a4fe7741b04a0a05774605709ac7824054d
    <meta name="viewport" content="width=device-width, initial-scale=1">
 
    <!-- Place favicon.ico in the root directory -->
@@ -54,26 +50,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> dd2f0a4fe7741b04a0a05774605709ac7824054d
    <!-- Scroll-top -->
    <button class="scroll-top scroll-to-target" data-target="html">
       <i class="icon-chevrons-up"></i>
    </button>
-<<<<<<< HEAD
-   <!-- Scroll-top-end-->
-
-   <!-- header-area-start -->
-   <?php
-   include "includes/header.php";
-   ?>
-=======
 
    <!-- header-area-start -->
    <?php include "includes/header.php"; ?>
->>>>>>> dd2f0a4fe7741b04a0a05774605709ac7824054d
    <!-- header-area-end -->
 
    <main>
@@ -100,11 +83,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <section class="track-area pb-40">
          <div class="container">
             <div class="row justify-content-center">
-<<<<<<< HEAD
-=======
 
                <!-- Login Form Section -->
->>>>>>> dd2f0a4fe7741b04a0a05774605709ac7824054d
                <div class="col-lg-6 col-sm-12 d-flex">
                   <div class="tptrack__product mb-40 d-flex">
                      <div class="tptrack__content grey-bg">
@@ -117,11 +97,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                               <p>Your personal data will be used to support your experience throughout this website, to manage access to your account.</p>
                            </div>
                         </div>
-<<<<<<< HEAD
-                        <!-- Display Success Message and Redirect After 5 Seconds -->
-=======
-
->>>>>>> dd2f0a4fe7741b04a0a05774605709ac7824054d
                         <!-- Success Message -->
                         <?php if (!empty($success)): ?>
                            <div class='alert alert-success'><?php echo $success; ?></div>
@@ -133,16 +108,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                               <div class='alert alert-danger'><?php echo $error; ?></div>
                            <?php endforeach; ?>
                         <?php endif; ?>
-<<<<<<< HEAD
-                        <form action="#" method="POST">
-                           <div class="tptrack__id mb-10">
-                              <span><i class="fal fa-user"></i></span>
-                              <input type="email" name="userEmail" placeholder="Username / email address">
-                           </div>
-                           <div class="tptrack__email mb-10">
-                              <span><i class="fal fa-key"></i></span>
-                              <input type="password" name="userPassword" placeholder="Password">
-=======
 
                         <form action="#" method="POST">
                            <div class="tptrack__id mb-10">
@@ -152,7 +117,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                            <div class="tptrack__email mb-10">
                               <span><i class="fal fa-key"></i></span>
                               <input type="password" name="userPassword" placeholder="Password" required>
->>>>>>> dd2f0a4fe7741b04a0a05774605709ac7824054d
                            </div>
                            <div class="tpsign__remember d-flex align-items-center justify-content-between mb-15">
                               <div class="form-check">
@@ -167,14 +131,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                               <a href="register.php">Create a new Account</a>
                            </div>
                            <div class="tptrack__btn">
-<<<<<<< HEAD
-                              <button class="tptrack__submition active">Login Now<i class="fal fa-long-arrow-right"></i></button>
-                           </div>
-                        </form>
-                     </div>
-                  </div>
-               </div>
-=======
                               <button type="submit" class="tptrack__submition active">Login Now<i class="fal fa-long-arrow-right"></i></button>
                            </div>
                         </form>
@@ -192,7 +148,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                </div>
 
                <!-- Member Benefits Section -->
->>>>>>> dd2f0a4fe7741b04a0a05774605709ac7824054d
                <div class="col-lg-6 col-sm-12 d-flex">
                   <div class="tptrack__product mb-40 d-flex">
                      <div class="tptrack__content grey-bg login-member-box">
@@ -211,12 +166,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                         <div class="login-member-row">
                            <img src="./assets/img/icon/star.png" alt="star icon">
-<<<<<<< HEAD
-                           <p>With a Indian Basket account, you can save time during checkout,
-                              access your shopping bag from any device and view your order history.</p>
-=======
                            <p>With an Indian Basket account, you can save time during checkout, access your shopping bag from any device and view your order history.</p>
->>>>>>> dd2f0a4fe7741b04a0a05774605709ac7824054d
                         </div>
                         <div class="tptrack__btn">
                            <a href="register.php" class="tptrack__submition tpsign__reg">Sign Up<i class="fal fa-long-arrow-right"></i></a>
@@ -224,25 +174,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                      </div>
                   </div>
                </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> dd2f0a4fe7741b04a0a05774605709ac7824054d
             </div>
          </div>
       </section>
       <!-- track-area-end -->
 
       <!-- footer-area-start -->
-<<<<<<< HEAD
-      <?php
-      include "includes/footer.php";
-      ?>
-      <!-- footer-area-end -->
-=======
       <?php include "includes/footer.php"; ?>
       <!-- footer-area-end -->
 
 </body>
 </html>
->>>>>>> dd2f0a4fe7741b04a0a05774605709ac7824054d
