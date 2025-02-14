@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 // font url
 
@@ -14,3 +15,21 @@ $font-family: (
     )
 );
 
+=======
+
+// font url
+
+$font-url: 'https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&family=Schoolbell&display=swap';
+
+// font family
+$font-family: (
+    ff: (
+        body: "'Jost', sans-serif",
+        heading: "'Quicksand', sans-serif",
+        p: "'Jost', sans-serif",
+        jost: "'Jost', sans-serif",
+        font-family: 'Font Awesome 5 Pro',
+    )
+);
+
+>>>>>>> dd2f0a4fe7741b04a0a05774605709ac7824054d

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @use '../utils' as *;
 
 /*--
@@ -24,4 +25,32 @@
 
 .theme-bg-2 {
 	background-color: var(--tp-theme-4);
+=======
+@use '../utils' as *;
+
+/*--
+    - Background color
+-----------------------------------------*/
+.grey-bg {
+	background: var(--tp-grey-1);
+}
+.grey-bg-2 {
+	background: var(--tp-grey-2);
+}
+
+.white-bg {
+	background: var(--tp-common-white);
+}
+
+.black-bg {
+	background: var(--tp-common-black);
+}
+
+.theme-bg-1 {
+	background-color: var(--tp-theme-1);
+}
+
+.theme-bg-2 {
+	background-color: var(--tp-theme-4);
+>>>>>>> dd2f0a4fe7741b04a0a05774605709ac7824054d
 }
