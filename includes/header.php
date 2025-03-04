@@ -63,7 +63,7 @@
                                 <button class="tp-search-toggle"><i class="icon-search"></i></button>
                             </div>
                             <div class="header__info-user tpcolor__yellow ml-10">
-                                <a href="login.php"><i class="icon-user"></i></a>
+                                <a href="profile.php"><i class="icon-user"></i></a>
                             </div>
                             <div class="header__info-wishlist tpcolor__greenish ml-10">
                                 <a href="#"><i class="icon-heart icons"></i></a>

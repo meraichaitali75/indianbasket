@@ -1,6 +1,9 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 session_start();
 require_once "./includes/db/functions.php";
+
 
 $user = new Functions();
 $errors = [];
@@ -12,13 +15,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
    $result = $user->login($email, $password);
 
-   if ($result === "success") {
+   if ($result === "user" || $result === "admin") { // ✅ Now works for both users & admins
       $success = "Login successful! Redirecting Home...";
       echo "<script>setTimeout(() => { window.location.href = 'index.php'; }, 2000);</script>";
    } else {
       // Ensure $errors is always an array
       $errors = is_array($result) ? $result : [$result];
    }
+   
 }
 ?>
 <!doctype html>
