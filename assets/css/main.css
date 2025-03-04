@@ -1239,6 +1239,10 @@ only screen and (min-width: 576px) and (max-width: 767px) {
   border: 1px solid #E6EAF0;
 }
 
+.header__main-area {
+  border: 1px solid #E6EAF0;
+}
+
 .main-menu ul li {
   position: relative;
   display: inline-block;
@@ -3544,6 +3548,12 @@ only screen and (min-width: 768px) and (max-width: 991px) {
   background-color: var(--tp-grey-5);
 }
 
+.header__info-signout svg {
+  height: 20px;
+  width: 20px;
+  object-fit: contain;
+}
+
 .tpcolor__oasis a i,
 .tpcolor__oasis button i {
   background-color: var(--tp-grey-6);
@@ -3834,6 +3844,523 @@ only screen and (min-width: 992px) and (max-width: 1199px) {
   padding: 11px 22px 20px 18px;
   border-radius: 10px;
 }
+
+/*----------------------------------------*/
+/*  11. PROFILE CSS
+/*----------------------------------------*/
+
+.profile-container {
+  padding: 50px 0;
+}
+
+.profile-container .tab-pane,
+.profile-container .tab-content {
+  height: 100%;
+}
+
+.profile-container .tab-content {
+  height: 100%;
+}
+
+.profile-container .btn {
+  padding: 10px 20px;
+  min-width: 300px;
+  border-radius: 0;
+}
+
+.profile-container .btn-sm {
+  min-width: 100px !important;
+  width: auto;
+}
+
+.profile-container .btn.btn-dark {
+  background: #051F34;
+}
+
+.profile-container .logout-btn {
+  margin: 30px 10px 0 10px;
+}
+
+.profile-container .profile-sidebar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.profile-sidebar .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.profile-container .card {
+  /* padding: 25px 0; */
+  border: none;
+  border-radius: 0;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-container .card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding-left: 25px;
+}
+
+.profile-container .card-account-title {
+  padding: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.profile-container .card-body {
+  padding: 0;
+  border-radius: 0;
+}
+
+.profile-container .order-card-body-content,
+.profile-container .account-form {
+  padding: 20px;
+}
+
+.profile-container .card-main-body {
+  border-radius: 0;
+}
+
+.profile-container .profile-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #051F34;
+  margin-bottom: 20px;
+}
+
+.profile-container .account-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e6e6f3;
+  padding: 10px;
+}
+
+.profile-container .account-top-row h5 {
+  margin-bottom: 0;
+}
+
+.profile-container .upload-btn-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-container .upload-btn-wrapper .upload-btn-icon {
+  position: absolute;
+  left: -40px;
+  top: 3px;
+  opacity: 1;
+  cursor: pointer;
+  background-color: #fff;
+  padding: 7px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 4px solid #e6e6f3;
+}
+
+.profile-container .upload-btn-icon svg {
+  height: 20px;
+  width: 20px;
+  object-fit: contain;
+}
+
+
+/*----------------------------------------*/
+/*  11.4. CHANGE PASSWORD CSS
+/*----------------------------------------*/
+.profile-container .change-password-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+  height: 100%;
+}
+
+.profile-container .change-password-body {
+  flex: none;
+}
+
+/*----------------------------------------*/
+/*  11.4. ORDERS CSS
+/*----------------------------------------*/
+.profile-container .order-card,
+.profile-container .billing-card {
+  border: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  filter: drop-shadow(7px 7px 6px rgba(0, 0, 0, 0.161));
+
+}
+
+.profile-container .billing-card {
+  padding: 20px;
+}
+
+.profile-container .order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.profile-container .order-info {
+  background: #E6E6F3;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+}
+
+.profile-container .order-info p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.profile-container .order-info .order-number {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #051F34;
+}
+
+.profile-container .order-items {
+  padding: 20px;
+}
+
+.profile-container .order-item {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.profile-container .order-img {
+  box-shadow: 10px 10px 20px 5px #cccc;
+  height: 80px;
+  width: 80px;
+  object-fit: contain;
+}
+
+.profile-container .order-item:last-child {
+  margin-bottom: 0;
+}
+
+.profile-container .item-name {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 1);
+  margin: 0;
+}
+
+.profile-container .item-quantity {
+  color: rgba(0, 0, 0, 1);
+  margin: 0;
+}
+
+.profile-container .delivered {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #0011FF;
+}
+
+.profile-container .cancelled {
+  color: red;
+  font-weight: bold;
+}
+
+.profile-container .btn-return {
+  background-color: transparent;
+  border: 1px solid #2E384D;
+  color: #2E384D;
+  padding: 5px 15px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.profile-container .btn-return:hover {
+  background-color: #2E384D;
+  color: #fff;
+}
+
+/*----------------------------------------*/
+/*  11.3 BILLING ADDRESS CSS
+/*----------------------------------------*/
+
+.profile-container .card-account-title {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.profile-container .form-select .current {
+  margin-bottom: 20px;
+  display: block;
+}
+
+.profile-container .nice-select:after {
+  display: none;
+}
+
+.profile-container select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: #fff;
+}
+
+.profile-container .form-select .current,
+.profile-container .form-control::placeholder,
+.profile-container .form-select::placeholder {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  color: #8A8A8A;
+}
+
+.profile-container .form-control,
+.profile-container .form-select {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.profile-container .form-control:focus,
+.profile-container .form-select:focus {
+  border-bottom: 1px solid #000;
+  box-shadow: none;
+}
+
+.profile-container .btn-dark {
+  padding: 8px 20px;
+  font-size: 14px;
+}
+
+.profile-container .form-select {
+  border-radius: 0;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 10px;
+  font-size: 14px;
+  color: #555;
+  background-color: #fff;
+  appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+.profile-container #sameAddress:checked+label {
+  color: #007bff;
+}
+
+/* custom radio css */
+.profile-container .custom-radio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-container .custom-radio .form-label {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  color: #8A8A8A;
+}
+
+.profile-container .custom-radio .form-check {
+  margin-bottom: 8px;
+}
+
+.profile-container .custom-radio .form-check-input {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #e0e0e0;
+  margin-top: 0.3em;
+  cursor: pointer;
+}
+
+.profile-container .custom-radio .form-check-input:checked {
+  background-color: #2E384D;
+  border-color: #2E384D;
+}
+
+.profile-container .custom-radio .form-check-label {
+  font-size: 14px;
+  color: #555;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.profile-container .billing-address-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-container .billing-address-details-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-container .alert {
+  transition: opacity 0.5s ease-out;
+}
+
+.profile-container .alert.hide {
+  opacity: 0;
+}
+.profile-container .billing-address-details-row .icons {
+  height: 20px;
+  width: 20px;
+  object-fit: contain;
+}
+
+.profile-container .billing-address-details p {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+  /* Medium gray for text */
+  line-height: 1.5;
+}
+
+.profile-container .billing-address-details .name {
+  font-weight: bold;
+  color: #2E384D;
+  /* Dark blue for name */
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.profile-container .billing-address-details .street-address,
+.profile-container .billing-address-details .email,
+.profile-container .billing-address-details .city-state-zip,
+.profile-container .billing-address-details .phone {
+  margin-bottom: 8px;
+}
+
+.profile-container .common-select .form-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.profile-container .common-select .input-group {
+  border-radius: 5px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.profile-container .common-select .contact-dropdown {
+  max-width: 80px;
+  border: 0;
+}
+
+.profile-container .common-select .input-group-text {
+  background-color: #f8f9fa;
+  border: none;
+  font-size: 14px;
+  color: #555;
+  padding: 10px;
+}
+
+.profile-container .common-select .form-control {
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  color: #555;
+  background-color: transparent;
+  border: 0;
+}
+
+.profile-container .common-select .form-control:focus {
+  box-shadow: none;
+  border-color: #2E384D;
+}
+
+.profile-container .list-group-item {
+  display: flex;
+}
+
+.profile-container .nav-link {
+  margin-bottom: 10px;
+  border: none;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 24px;
+  color: #051F34;
+  padding: 10px 25px;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.profile-container .nav-link span {
+  padding-left: 10px;
+}
+
+.profile-container .nav-link.active,
+.profile-container .nav-link:hover {
+  font-weight: 400;
+  color: #051F34;
+  background-color: rgba(230, 230, 243, 1) !important;
+}
+
+.profile-container .form-control {
+  border-radius: 0;
+  padding: 10px;
+  font-size: 1rem;
+  box-shadow: none;
+}
+
+.profile-container .btn-primary {
+  background-color: #007bff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+.profile-container .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.profile-container .mt-4 h6 {
+  font-size: 1.2rem;
+  font-weight: bold;
+
+}
+
+.profile-container .mt-4 p {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.profile-container .contact-address {
+  padding: 15px 15px 0 15px;
+}
+
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .tpproduct__content {
@@ -9020,6 +9547,9 @@ only screen and (min-width: 992px) and (max-width: 1199px),
   border-radius: 2px;
 }
 
+
+
+
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   .tpfooter__copyright {
     text-align: center;
@@ -9146,3 +9676,9 @@ only screen and (min-width: 576px) and (max-width: 767px) {
 }
 
 /*# sourceMappingURL=main.css.map */
+
+@media screen and (max-width: 1400px) {
+  .profile-container .btn {
+    min-width: auto;
+  }
+}

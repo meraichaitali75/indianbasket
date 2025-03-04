@@ -7,12 +7,12 @@ $errors = [];
 $success = ""; // Initialize success message variable
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   $firstname = $_POST["userFirstName"];
-   $lastname = $_POST["userLastName"];
-   $email = $_POST["userEmail"];
-   $password = $_POST["userPassword"];
-   $confirm_password = $_POST["userConfrmPassword"];
-   $gender = $_POST["userGender"];
+   $firstname = $_POST["userFirstName"] ?? '';
+   $lastname = $_POST["userLastName"] ?? '';
+   $email = $_POST["userEmail"] ?? '';
+   $password = $_POST["userPassword"] ?? '';
+   $confirm_password = $_POST["userConfrmPassword"] ?? ''; // Fallback to empty string if not set
+   $gender = $_POST["userGender"] ?? '';
 
    $existing_user = $user->getUserByEmail($email);
 
@@ -157,6 +157,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <input type="password" name="userPassword" placeholder="Password" required>
                                  </div>
                               </div>
+                              <div class="col-lg-6 col-sm-12">
+                                 <div class="tptrack__email mb-10">
+                                    <span><i class="fal fa-key"></i></span>
+                                    <input type="password" name="userConfrmPassword" placeholder="Confirm Password" required>
+                                 </div>
+                              </div>
                            </div>
 
                            <div class="tptrack__id mb-10 country-select">
@@ -177,8 +183,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                            </div>
                         </form>
 
-                         <!-- Social Media Login Buttons -->
-                         <div class="social-login mt-3 text-center">
+                        <!-- Social Media Login Buttons -->
+                        <div class="social-login mt-3 text-center">
                            <p>Or login with:</p>
                            <a href="google_oauth.php" class="btn btn-danger">Google</a>
                            <a href="facebook_oauth.php" class="btn btn-primary">Facebook</a>
