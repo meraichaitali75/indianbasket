@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Allow only jpg, png, jpeg formats
             if (in_array($fileType, ["jpg", "jpeg", "png"])) {
                 if (move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $targetFilePath)) {
-                    $profilePic = "assets/img/uploads/" . $profilePicName;
+                    $profilePic = "../assets/img/uploads/" . $profilePicName;
                 } else {
                     $errors[] = "Error uploading profile picture.";
                 }

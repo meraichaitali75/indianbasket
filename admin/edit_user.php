@@ -55,13 +55,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $role = $user['role'];
     }
 
-    // If password field is not empty and the user is manual, update password
-    if (!$isSocialUser && !empty($_POST['password'])) {
-        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        $updateQuery = "UPDATE users SET firstname=?, lastname=?, email=?, password=?, role=? WHERE user_id=?";
-        $stmt = $conn->prepare($updateQuery);
-        $stmt->bind_param("sssssi", $firstname, $lastname, $email, $password, $role, $user_id);
+    // Check if a new password was provided
+    $password = !empty($_POST['password']) ? password_hash($_POST['password'], PASSWORD_BCRYPT) : null;
+
+    // Construct query based on whether a new password was provided
+    if (!$isSocialUser) {
+        if ($password) {
+            $updateQuery = "UPDATE users SET firstname=?, lastname=?, email=?, password=?, role=? WHERE user_id=?";
+            $stmt = $conn->prepare($updateQuery);
+            $stmt->bind_param("sssssi", $firstname, $lastname, $email, $password, $role, $user_id);
+        } else {
+            $updateQuery = "UPDATE users SET firstname=?, lastname=?, email=?, role=? WHERE user_id=?";
+            $stmt = $conn->prepare($updateQuery);
+            $stmt->bind_param("ssssi", $firstname, $lastname, $email, $role, $user_id);
+        }
     } else {
+        // Only update role for social users
         $updateQuery = "UPDATE users SET role=? WHERE user_id=?";
         $stmt = $conn->prepare($updateQuery);
         $stmt->bind_param("si", $role, $user_id);
@@ -79,11 +88,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit User | Admin Panel</title>
-    
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/admin.css">
@@ -190,4 +200,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>

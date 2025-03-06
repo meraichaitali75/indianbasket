@@ -2,6 +2,9 @@
 session_start();
 require_once __DIR__ . '/../includes/db/functions.php'; // Correct path
 
+
+
+
 $admin = new Functions();
 $errors = [];
 $success = "";
@@ -9,6 +12,7 @@ $success = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
    $email = trim($_POST["adminEmail"]);
    $password = trim($_POST["adminPassword"]);
+   
 
    $result = $admin->login($email, $password);
 
