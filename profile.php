@@ -449,7 +449,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["change_password"])) {
                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-               <form method="POST" action="">
+               <form method="POST" action="profile.php">
                   <div class="row">
                      <div class="col-md-6 mb-3">
                         <input type="text" class="form-control" id="firstName" name="firstname" placeholder="First Name" required>
