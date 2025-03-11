@@ -1,11 +1,30 @@
 <?php
 session_start();
-require_once __DIR__ . '/../includes/db/functions.php'; 
+require_once __DIR__ . '/../includes/db/functions.php';
 
+// Redirect to login if not an admin
 if (!isset($_SESSION["admin_email"])) {
     header("Location: login.php");
     exit;
 }
+
+$functionsObj = new Functions();
+$conn = $functionsObj->getDatabaseConnection();
+
+// Fetch Total Users
+$query = "SELECT COUNT(*) AS total_users FROM users";
+$result = $conn->query($query);
+$totalUsers = $result->fetch_assoc()['total_users'];
+
+// Fetch Total Orders
+$query = "SELECT COUNT(*) AS total_orders FROM orders";
+$result = $conn->query($query);
+$totalOrders = $result->fetch_assoc()['total_orders'];
+
+// Fetch Total Products
+$query = "SELECT COUNT(*) AS total_products FROM products";
+$result = $conn->query($query);
+$totalProducts = $result->fetch_assoc()['total_products'];
 ?>
 
 <!DOCTYPE html>
@@ -37,29 +56,32 @@ if (!isset($_SESSION["admin_email"])) {
             <p>Use the left menu to navigate through the admin panel.</p>
 
             <div class="row">
+                <!-- Total Users Card -->
                 <div class="col-md-4">
                     <div class="card bg-primary text-white mb-3">
                         <div class="card-body text-center">
                             <h5 class="card-title">Total Users</h5>
-                            <p class="card-text fs-4">👤 150</p>
+                            <p class="card-text fs-4">👤 <?php echo $totalUsers; ?></p>
                         </div>
                     </div>
                 </div>
 
+                <!-- Total Orders Card -->
                 <div class="col-md-4">
                     <div class="card bg-success text-white mb-3">
                         <div class="card-body text-center">
                             <h5 class="card-title">Total Orders</h5>
-                            <p class="card-text fs-4">📦 320</p>
+                            <p class="card-text fs-4">📦 <?php echo $totalOrders; ?></p>
                         </div>
                     </div>
                 </div>
 
+                <!-- Total Products Card -->
                 <div class="col-md-4">
                     <div class="card bg-warning text-dark mb-3">
                         <div class="card-body text-center">
                             <h5 class="card-title">Total Products</h5>
-                            <p class="card-text fs-4">🛒 540</p>
+                            <p class="card-text fs-4">🛒 <?php echo $totalProducts; ?></p>
                         </div>
                     </div>
                 </div>
