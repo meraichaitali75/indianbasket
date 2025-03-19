@@ -55,47 +55,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Hash Password
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-        // Ensure Upload Directory Exists
-        $uploadDir = __DIR__ . "/../assets/img/uploads/";
+        // Set Upload Directory **(outside admin folder)**
+        $uploadDir = __DIR__ . "/../uploads/profile_pictures/";
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0777, true);
         }
 
-        // Upload Profile Picture if provided
-       // Ensure Upload Directory Exists
-$uploadDir = "/Applications/XAMPP/xamppfiles/htdocs/indianbasket/assets/img/uploads/profile_pictures/";
-if (!is_dir($uploadDir)) {
-    mkdir($uploadDir, 0777, true);
-}
+        // Default Profile Picture Path
+        $defaultProfilePic = "uploads/profile_pictures/default-profile.png"; 
+        $profilePic = $defaultProfilePic; // Set default initially
 
-// Default Profile Picture Path
-$defaultProfilePic = "../assets/img/default-profile.png"; // Go up one level
-$profilePic = $defaultProfilePic; // Set default initially
+        // Handle Profile Picture Upload
+        if (isset($_FILES["profile_pic"]) && !empty($_FILES["profile_pic"]["name"])) {
+            $profilePicName = time() . "_" . basename($_FILES["profile_pic"]["name"]);
+            $targetFilePath = $uploadDir . $profilePicName;
+            $fileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
 
-// Check if a profile picture is uploaded
-if (isset($_FILES["profile_pic"]) && !empty($_FILES["profile_pic"]["name"])) {
-    $profilePicName = time() . "_" . basename($_FILES["profile_pic"]["name"]);
-    $targetFilePath = $uploadDir . $profilePicName;
-    $fileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
-
-    // Allow only jpg, png, jpeg formats
-    if (in_array($fileType, ["jpg", "jpeg", "png"])) {
-        if (move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $targetFilePath)) {
-            // Store the relative path to be saved in the database
-            $profilePic = "assets/img/uploads/profile_pictures/" . $profilePicName;
-        } else {
-            $errors[] = "Error uploading profile picture.";
+            // Allow only jpg, png, jpeg formats
+            if (in_array($fileType, ["jpg", "jpeg", "png"])) {
+                if (move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $targetFilePath)) {
+                    // Store the relative path for database
+                    $profilePic = "uploads/profile_pictures/" . $profilePicName;
+                } else {
+                    $errors[] = "Error uploading profile picture.";
+                }
+            } else {
+                $errors[] = "Only JPG, JPEG, and PNG formats are allowed.";
+            }
         }
-    } else {
-        $errors[] = "Only JPG, JPEG, and PNG formats are allowed.";
-    }
-}
-
-// Ensure default image is stored if no upload occurs
-if (empty($profilePic)) {
-    $profilePic = $defaultProfilePic;
-}
-
 
         // Insert into Database
         if (empty($errors)) {
