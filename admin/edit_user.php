@@ -38,7 +38,7 @@ if (!$user) {
 $isSocialUser = ($user['provider'] !== 'manual');
 
 // Determine Profile Picture (Default if None Exists)
-$profilePic = !empty($user['profile_pic']) ? $user['profile_pic'] : '../assets/img/default-profile.png';
+$profilePic = !empty($user['profile_pic']) ? "../" . $user['profile_pic'] : '../assets/img/default-profile.png';
 
 // Handle Form Submission for Updating User
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -55,16 +55,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $role = $user['role'];
     }
 
-    // If password field is not empty and the user is manual, update password
+    // Handle Profile Picture Upload
+    $uploadDir = __DIR__ . "/../uploads/profile_pictures/"; // Path outside admin folder
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+    }
+
+    $newProfilePic = $user['profile_pic']; // Keep old profile picture by default
+
+    if (isset($_FILES["profile_pic"]) && !empty($_FILES["profile_pic"]["name"])) {
+        $profilePicName = time() . "_" . basename($_FILES["profile_pic"]["name"]);
+        $targetFilePath = $uploadDir . $profilePicName;
+        $fileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
+
+        // Allow only jpg, png, jpeg formats
+        if (in_array($fileType, ["jpg", "jpeg", "png"])) {
+            if (move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $targetFilePath)) {
+                $newProfilePic = "uploads/profile_pictures/" . $profilePicName; // Save relative path
+            } else {
+                $errors[] = "Error uploading profile picture.";
+            }
+        } else {
+            $errors[] = "Only JPG, JPEG, and PNG formats are allowed.";
+        }
+    }
+
+    // Update password if provided
     if (!$isSocialUser && !empty($_POST['password'])) {
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        $updateQuery = "UPDATE users SET firstname=?, lastname=?, email=?, password=?, role=? WHERE user_id=?";
+        $updateQuery = "UPDATE users SET firstname=?, lastname=?, email=?, password=?, role=?, profile_pic=? WHERE user_id=?";
         $stmt = $conn->prepare($updateQuery);
-        $stmt->bind_param("sssssi", $firstname, $lastname, $email, $password, $role, $user_id);
+        $stmt->bind_param("ssssssi", $firstname, $lastname, $email, $password, $role, $newProfilePic, $user_id);
     } else {
-        $updateQuery = "UPDATE users SET role=? WHERE user_id=?";
+        $updateQuery = "UPDATE users SET firstname=?, lastname=?, email=?, role=?, profile_pic=? WHERE user_id=?";
         $stmt = $conn->prepare($updateQuery);
-        $stmt->bind_param("si", $role, $user_id);
+        $stmt->bind_param("sssssi", $firstname, $lastname, $email, $role, $newProfilePic, $user_id);
     }
 
     if ($stmt->execute()) {
@@ -125,53 +150,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <img src="<?php echo htmlspecialchars($profilePic); ?>" alt="Profile Picture" class="img-thumbnail" style="width: 150px; height: 150px; object-fit: cover;">
                     </div>
 
-                    <form method="POST">
+                    <form method="POST" enctype="multipart/form-data">
                         <div class="row mt-3">
                             <div class="col-md-4">
                                 <label>First Name</label>
-                                <input type="text" name="firstname" class="form-control" value="<?php echo htmlspecialchars($user['firstname']); ?>" <?php echo $isSocialUser ? 'disabled' : ''; ?> required>
-                                <?php if ($isSocialUser): ?>
-                                    <input type="hidden" name="firstname" value="<?php echo htmlspecialchars($user['firstname']); ?>">
-                                    <small class="text-danger">First name cannot be changed for social media users.</small>
-                                <?php endif; ?>
+                                <input type="text" name="firstname" class="form-control" value="<?php echo htmlspecialchars($user['firstname']); ?>" required>
                             </div>
                             <div class="col-md-4">
                                 <label>Last Name</label>
-                                <input type="text" name="lastname" class="form-control" value="<?php echo htmlspecialchars($user['lastname']); ?>" <?php echo $isSocialUser ? 'disabled' : ''; ?> required>
-                                <?php if ($isSocialUser): ?>
-                                    <input type="hidden" name="lastname" value="<?php echo htmlspecialchars($user['lastname']); ?>">
-                                    <small class="text-danger">Last name cannot be changed for social media users.</small>
-                                <?php endif; ?>
+                                <input type="text" name="lastname" class="form-control" value="<?php echo htmlspecialchars($user['lastname']); ?>" required>
                             </div>
                             <div class="col-md-4">
                                 <label>Email</label>
-                                <input type="email" name="email" class="form-control" value="<?php echo htmlspecialchars($user['email']); ?>" <?php echo $isSocialUser ? 'disabled' : ''; ?> required>
-                                <?php if ($isSocialUser): ?>
-                                    <input type="hidden" name="email" value="<?php echo htmlspecialchars($user['email']); ?>">
-                                    <small class="text-danger">Email cannot be changed for social media users.</small>
-                                <?php endif; ?>
+                                <input type="email" name="email" class="form-control" value="<?php echo htmlspecialchars($user['email']); ?>" required>
                             </div>
                         </div>
 
                         <div class="row mt-3">
                             <div class="col-md-4">
                                 <label>Role</label>
-                                <select name="role" class="form-control" <?php echo $isSocialUser ? 'disabled' : ''; ?>>
+                                <select name="role" class="form-control">
                                     <option value="user" <?php echo ($user['role'] == 'user') ? 'selected' : ''; ?>>User</option>
                                     <option value="admin" <?php echo ($user['role'] == 'admin') ? 'selected' : ''; ?>>Admin</option>
                                 </select>
-                                <?php if ($isSocialUser): ?>
-                                    <input type="hidden" name="role" value="<?php echo $user['role']; ?>">
-                                    <small class="text-danger">Role cannot be changed for social media users.</small>
-                                <?php endif; ?>
                             </div>
 
                             <div class="col-md-4">
-                                <label>New Password</label>
-                                <input type="password" name="password" class="form-control" <?php echo $isSocialUser ? 'disabled' : ''; ?>>
-                                <?php if ($isSocialUser): ?>
-                                    <small class="text-danger">Password cannot be changed for social media users.</small>
-                                <?php endif; ?>
+                                <label>New Password (Leave blank to keep current password)</label>
+                                <input type="password" name="password" class="form-control">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label>Profile Picture (Optional)</label>
+                                <input type="file" name="profile_pic" class="form-control">
                             </div>
                         </div>
 
