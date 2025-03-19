@@ -17,20 +17,33 @@ $success = "";
 // Create Category
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create_category"])) {
     $name = trim($_POST["name"]);
+    $image = $_FILES["image"]["name"];
+    $target_dir = "../uploads/categories/";
+    $target_file = $target_dir . basename($image);
 
     if (empty($name)) {
         $errors[] = "Category name is required.";
     } else {
-        $query = "INSERT INTO categories (name) VALUES (?)";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("s", $name);
+        // Check if image file is a actual image or fake image
+        $check = getimagesize($_FILES["image"]["tmp_name"]);
+        if ($check !== false) {
+            if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                $query = "INSERT INTO categories (name, image) VALUES (?, ?)";
+                $stmt = $conn->prepare($query);
+                $stmt->bind_param("ss", $name, $image);
 
-        if ($stmt->execute()) {
-            $success = "Category created successfully!";
-            header("Location: categories.php");
-            exit();
+                if ($stmt->execute()) {
+                    $success = "Category created successfully!";
+                    header("Location: categories.php");
+                    exit();
+                } else {
+                    $errors[] = "Error creating category.";
+                }
+            } else {
+                $errors[] = "Sorry, there was an error uploading your file.";
+            }
         } else {
-            $errors[] = "Error creating category.";
+            $errors[] = "File is not an image.";
         }
     }
 }
@@ -39,13 +52,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create_category"])) {
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_category"])) {
     $category_id = intval($_POST["category_id"]);
     $name = trim($_POST["name"]);
+    $image = $_FILES["image"]["name"];
+    $target_dir = "../uploads/categories/";
+    $target_file = $target_dir . basename($image);
 
     if (empty($name)) {
         $errors[] = "Category name is required.";
     } else {
-        $query = "UPDATE categories SET name = ? WHERE category_id = ?";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("si", $name, $category_id);
+        if (!empty($image)) {
+            // Check if image file is a actual image or fake image
+            $check = getimagesize($_FILES["image"]["tmp_name"]);
+            if ($check !== false) {
+                if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                    $query = "UPDATE categories SET name = ?, image = ? WHERE category_id = ?";
+                    $stmt = $conn->prepare($query);
+                    $stmt->bind_param("ssi", $name, $image, $category_id);
+                } else {
+                    $errors[] = "Sorry, there was an error uploading your file.";
+                }
+            } else {
+                $errors[] = "File is not an image.";
+            }
+        } else {
+            $query = "UPDATE categories SET name = ? WHERE category_id = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("si", $name, $category_id);
+        }
 
         if ($stmt->execute()) {
             $success = "Category updated successfully!";
@@ -121,10 +153,14 @@ $categories = $result->fetch_all(MYSQLI_ASSOC);
             <div class="card mb-4">
                 <div class="card-header bg-dark text-white">Add New Category</div>
                 <div class="card-body">
-                    <form method="POST">
+                    <form method="POST" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="name" class="form-label">Category Name</label>
                             <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Category Image</label>
+                            <input type="file" class="form-control" id="image" name="image" required>
                         </div>
                         <button type="submit" name="create_category" class="btn btn-primary">Add Category</button>
                     </form>
@@ -140,6 +176,7 @@ $categories = $result->fetch_all(MYSQLI_ASSOC);
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
+                                <th>Image</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -148,6 +185,13 @@ $categories = $result->fetch_all(MYSQLI_ASSOC);
                                 <tr>
                                     <td><?php echo $category["category_id"]; ?></td>
                                     <td><?php echo $category["name"]; ?></td>
+                                    <td>
+                                        <?php if (!empty($category["image"])): ?>
+                                            <img src="../uploads/categories/<?php echo $category["image"]; ?>" alt="<?php echo $category["name"]; ?>" width="50">
+                                        <?php else: ?>
+                                            No Image
+                                        <?php endif; ?>
+                                    </td>
                                     <td>
                                         <!-- Edit Button -->
                                         <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editCategoryModal<?php echo $category["category_id"]; ?>">
@@ -175,11 +219,18 @@ $categories = $result->fetch_all(MYSQLI_ASSOC);
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST">
+                        <form method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="category_id" value="<?php echo $category["category_id"]; ?>">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Category Name</label>
                                 <input type="text" class="form-control" id="name" name="name" value="<?php echo $category["name"]; ?>" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Category Image</label>
+                                <input type="file" class="form-control" id="image" name="image">
+                                <?php if (!empty($category["image"])): ?>
+                                    <img src="../uploads/categories/<?php echo $category["image"]; ?>" alt="<?php echo $category["name"]; ?>" width="50">
+                                <?php endif; ?>
                             </div>
                             <button type="submit" name="update_category" class="btn btn-primary">Update Category</button>
                         </form>

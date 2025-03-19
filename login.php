@@ -121,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                            </div>
                            <div class="tptrack__email mb-10">
                               <span><i class="fal fa-key"></i></span>
-                              <input type="password" name="userPassword" placeholder="Password" required>
+                              <input type="text" name="userPassword" placeholder="Password" required>
                            </div>
                            <div class="tpsign__remember d-flex align-items-center justify-content-between mb-15">
                               <div class="form-check">

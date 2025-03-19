@@ -32,27 +32,21 @@
                         <div class="header__menu main-menu text-center">
                             <nav id="mobile-menu">
                                 <ul>
-                                    <li class="has-dropdown has-homemenu">
+                                    <!-- <li class="has-dropdown has-homemenu"></li> -->
+                                    <li>
                                         <a href="index.php">Home</a>
                                     </li>
-                                    <li class="has-dropdown has-megamenu">
-                                        <a href="#">Shop</a>
-
-                                    </li>
-                                    <li class="has-dropdown">
+                                    <li>
                                         <a href="#">Blog</a>
                                     </li>
-                                    <li class="has-dropdown">
-                                        <a href="#">Pages</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="login.php">Sign In</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="has-dropdown">
+                                    <li>
                                         <a href="#">Shop</a>
                                     </li>
                                     <li><a href="#">About Us</a></li>
                                     <li><a href="#">Contact Us</a></li>
+                                    <li>
+                                        <a href="login.php">Sign In</a>
+                                    </li>
                                 </ul>
                             </nav>
                         </div>
