@@ -446,5 +446,56 @@ class Functions {
          return "Error: " . $stmt->error;
      }
  }
+// Function to display all categories
+public function getAllCategories()
+{
+    $stmt = $this->db->conn->prepare("SELECT * FROM categories");
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $categories = [];
+    while ($row = $result->fetch_assoc()) {
+        $categories[] = $row;
+    }
+    return $categories;
 }
+
+// Fetch latest 5 categories
+public function getLatestCategories($limit = 5)
+{
+    $sql = "SELECT * FROM categories ORDER BY category_id DESC LIMIT $limit";
+    $result = $this->db->conn->query($sql);
+    $categories = [];
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $categories[] = $row;
+        }
+    }
+    return $categories;
+}
+// Function to display all products
+public function getAllProducts()
+{
+    $stmt = $this->db->conn->prepare("
+    SELECT p.*, c.name AS category_name 
+    FROM products p
+    LEFT JOIN categories c ON p.category_id = c.category_id
+");
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $products = [];
+    while ($row = $result->fetch_assoc()) {
+        $products[] = $row;
+    }
+    return $products;
+}
+public function getAllBanners() {
+    $query = "SELECT * FROM banners ORDER BY created_at DESC";
+    $result = $this->db->conn->query($query); 
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+}
+
 ?>
