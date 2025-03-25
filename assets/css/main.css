@@ -360,11 +360,9 @@ input::placeholder {
   left: 5%;
   height: 10px;
   width: 90%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(0, 0, 0, 0.25) 0%,
-    rgba(0, 0, 0, 0) 80%
-  );
+  background: radial-gradient(ellipse at center,
+      rgba(0, 0, 0, 0.25) 0%,
+      rgba(0, 0, 0, 0) 80%);
 }
 
 .scroll-top.open {
@@ -396,7 +394,7 @@ input::placeholder {
 }
 
 @media (max-width: 767px),
-  only screen and (min-width: 576px) and (max-width: 767px) {
+only screen and (min-width: 576px) and (max-width: 767px) {
   .tp-btn {
     padding: 8px 30px;
   }
@@ -463,6 +461,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
+
   .tp-btn-3,
   .tp-btn-4,
   .whight-btn {
@@ -782,6 +781,7 @@ input::placeholder {
 }
 
 @media (max-width: 767px) {
+
   .basic-pagination ul li a,
   .basic-pagination ul li span {
     height: 30px;
@@ -792,6 +792,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
+
   .basic-pagination ul li a,
   .basic-pagination ul li span {
     height: 40px;
@@ -978,7 +979,7 @@ input::placeholder {
   background: none;
 }
 
-.mean-container .mean-nav > ul {
+.mean-container .mean-nav>ul {
   padding: 0;
   margin: 0;
   width: 100%;
@@ -1023,16 +1024,16 @@ input::placeholder {
   border-color: var(--clr-theme-1);
 }
 
-.mean-container .mean-nav ul li > a > i {
+.mean-container .mean-nav ul li>a>i {
   display: none;
 }
 
-.mean-container .mean-nav ul li > a.mean-expand i {
+.mean-container .mean-nav ul li>a.mean-expand i {
   display: inline-block;
   font-size: 14px;
 }
 
-.mean-container .mean-nav > ul > li:first-child > a {
+.mean-container .mean-nav>ul>li:first-child>a {
   border-top: 0;
 }
 
@@ -1235,6 +1236,10 @@ input::placeholder {
   border: 1px solid #e6eaf0;
 }
 
+.header__main-area {
+  border: 1px solid #E6EAF0;
+}
+
 .main-menu ul li {
   position: relative;
   display: inline-block;
@@ -1269,11 +1274,11 @@ input::placeholder {
   color: var(--tp-heading-secondary);
 }
 
-.main-menu ul li.has-dropdown > a {
+.main-menu ul li.has-dropdown>a {
   position: relative;
 }
 
-.main-menu ul li.has-dropdown > a::after {
+.main-menu ul li.has-dropdown>a::after {
   content: "\e94f";
   font-size: 14px;
   color: var(--tp-common-black);
@@ -1315,14 +1320,14 @@ input::placeholder {
   transition: all 0.3s ease-out 0s;
 }
 
-.main-menu ul li .sub-menu > li {
+.main-menu ul li .sub-menu>li {
   margin: 0;
   list-style: none;
   padding: 0 20px 0 40px;
   display: block;
 }
 
-.main-menu ul li .sub-menu > li > a {
+.main-menu ul li .sub-menu>li>a {
   display: block;
   font-family: var(--font-body);
   text-transform: none;
@@ -1344,16 +1349,16 @@ input::placeholder {
   transition: all 0.3s ease-out 0s;
 }
 
-.main-menu ul li .sub-menu > li > a:hover {
+.main-menu ul li .sub-menu>li>a:hover {
   color: var(--tp-heading-secondary);
   padding-left: 8px;
 }
 
-.main-menu ul li .sub-menu > li > a::before {
+.main-menu ul li .sub-menu>li>a::before {
   display: none;
 }
 
-.main-menu ul li .sub-menu > li > a::after {
+.main-menu ul li .sub-menu>li>a::after {
   display: none;
 }
 
@@ -2123,7 +2128,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
-  only screen and (min-width: 992px) and (max-width: 1199px) {
+only screen and (min-width: 992px) and (max-width: 1199px) {
   .tpslider {
     padding-top: 50px;
     height: 600px;
@@ -2162,7 +2167,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px) {
+(max-width: 767px) {
   .tpslider__content p {
     margin-bottom: 20px;
   }
@@ -2176,8 +2181,8 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px),
-  only screen and (min-width: 576px) and (max-width: 767px) {
+(max-width: 767px),
+only screen and (min-width: 576px) and (max-width: 767px) {
   .tpslider__content p br {
     display: none;
   }
@@ -2192,7 +2197,7 @@ input::placeholder {
 }
 
 @media (max-width: 767px),
-  only screen and (min-width: 576px) and (max-width: 767px) {
+only screen and (min-width: 576px) and (max-width: 767px) {
   .tpslider__sub-title {
     margin-bottom: 20px;
   }
@@ -2206,7 +2211,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 1400px) and (max-width: 1600px),
-  only screen and (min-width: 1200px) and (max-width: 1399px) {
+only screen and (min-width: 1200px) and (max-width: 1399px) {
   .tpslider__title {
     font-size: 60px;
   }
@@ -2239,7 +2244,7 @@ input::placeholder {
 }
 
 @media (max-width: 767px),
-  only screen and (min-width: 576px) and (max-width: 767px) {
+only screen and (min-width: 576px) and (max-width: 767px) {
   .tpslider__title br {
     display: none;
   }
@@ -2263,12 +2268,12 @@ input::placeholder {
   }
 }
 
-.tpslider__thumb > img {
+.tpslider__thumb>img {
   max-width: 100%;
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
-  .tpslider__thumb > img {
+  .tpslider__thumb>img {
     max-width: 310px;
     margin-left: -20px;
   }
@@ -2597,7 +2602,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
-  only screen and (min-width: 768px) and (max-width: 991px) {
+only screen and (min-width: 768px) and (max-width: 991px) {
   .secondary-sliderbg .tpslider {
     height: 600px;
   }
@@ -2712,7 +2717,7 @@ input::placeholder {
   right: 220px;
 }
 
-.slider-three .tpslider__thumb > img {
+.slider-three .tpslider__thumb>img {
   max-width: 100%;
 }
 
@@ -2721,9 +2726,9 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
-  only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px),
-  only screen and (min-width: 576px) and (max-width: 767px) {
+only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px),
+only screen and (min-width: 576px) and (max-width: 767px) {
   .slider-three-content {
     margin-top: 0;
   }
@@ -2734,9 +2739,9 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
-  only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px),
-  only screen and (min-width: 576px) and (max-width: 767px) {
+only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px),
+only screen and (min-width: 576px) and (max-width: 767px) {
   .slider-three-content-two {
     margin-top: 0;
   }
@@ -2818,8 +2823,8 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 1400px) and (max-width: 1600px),
-  only screen and (min-width: 1200px) and (max-width: 1399px),
-  only screen and (min-width: 576px) and (max-width: 767px) {
+only screen and (min-width: 1200px) and (max-width: 1399px),
+only screen and (min-width: 576px) and (max-width: 767px) {
   .tpblog__entry-wap span {
     margin-right: 4px;
     padding-right: 7px;
@@ -2859,10 +2864,11 @@ input::placeholder {
   border-radius: 0 0 10px 10px;
   background-color: var(--tp-common-white);
   padding: 20px 28px 20px 30px;
+  border: 1px solid #ccc;
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
-  (max-width: 767px) {
+(max-width: 767px) {
   .tpblog__wrapper {
     padding: 20px 20px 20px 20px;
   }
@@ -2950,7 +2956,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
-  only screen and (min-width: 768px) and (max-width: 991px) {
+only screen and (min-width: 768px) and (max-width: 991px) {
   .tpblog__single-title {
     font-size: 18px;
   }
@@ -3002,7 +3008,7 @@ input::placeholder {
   color: var(--tp-common-white);
 }
 
-.tpblog__single-text > a {
+.tpblog__single-text>a {
   font-family: var(--tp-ff-jost);
   font-weight: 600;
   font-size: 12px;
@@ -3026,7 +3032,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px) {
+(max-width: 767px) {
   .tpblog__left-item {
     padding-right: 0;
     border-right: none;
@@ -3043,7 +3049,7 @@ input::placeholder {
 }
 
 @media (max-width: 767px),
-  only screen and (min-width: 768px) and (max-width: 991px) {
+only screen and (min-width: 768px) and (max-width: 991px) {
   .tpblog__right-item {
     margin-left: 0;
   }
@@ -3389,7 +3395,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px) {
+(max-width: 767px) {
   .postbox__social-tag {
     text-align: start;
   }
@@ -3507,7 +3513,7 @@ input::placeholder {
 }
 
 @media (max-width: 767px),
-  only screen and (min-width: 768px) and (max-width: 991px) {
+only screen and (min-width: 768px) and (max-width: 991px) {
   .blog-left-sidebar .tpblog__left-item {
     padding-left: 0px;
     border-left: none;
@@ -3521,7 +3527,7 @@ input::placeholder {
 }
 
 @media (max-width: 767px),
-  only screen and (min-width: 768px) and (max-width: 991px) {
+only screen and (min-width: 768px) and (max-width: 991px) {
   .blog-left-sidebar.tpblog__right-item {
     margin-right: 0;
   }
@@ -3553,7 +3559,7 @@ input::placeholder {
   background-color: var(--tp-grey-6);
 }
 
-.tperror__thumb > img {
+.tperror__thumb>img {
   animation: left-right 3s infinite linear;
   max-width: 100%;
 }
@@ -3678,7 +3684,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
-  only screen and (min-width: 992px) and (max-width: 1199px) {
+only screen and (min-width: 992px) and (max-width: 1199px) {
   .tpvideo__content p br {
     display: none;
   }
@@ -3793,7 +3799,7 @@ input::placeholder {
   border-top: transparent;
   opacity: 1;
   visibility: visible;
-  bottom: -130px;
+  bottom: -180px;
   box-shadow: 0px 15px 30px rgba(61, 110, 168, 0.1);
   border-radius: 0 0 10px 10px;
 }
@@ -4163,7 +4169,7 @@ input::placeholder {
   background-size: 12px;
 }
 
-.profile-container #sameAddress:checked + label {
+.profile-container #sameAddress:checked+label {
   color: #007bff;
 }
 
@@ -4222,6 +4228,7 @@ input::placeholder {
 .profile-container .alert.hide {
   opacity: 0;
 }
+
 .profile-container .billing-address-details-row .icons {
   height: 20px;
   width: 20px;
@@ -4446,7 +4453,7 @@ input::placeholder {
   transition-delay: 200ms;
 }
 
-.tpproduct__shopping a > i {
+.tpproduct__shopping a>i {
   font-size: 12px;
   height: 32px;
   width: 32px;
@@ -4459,7 +4466,7 @@ input::placeholder {
   margin-bottom: 5px;
 }
 
-.tpproduct__shopping a > i:hover {
+.tpproduct__shopping a>i:hover {
   background-color: var(--tp-heading-secondary);
   border: 1px solid var(--tp-heading-secondary);
   color: var(--tp-common-white);
@@ -4775,6 +4782,17 @@ input::placeholder {
   transform: scale(1.08);
 }
 
+/* .tplist__product-img {
+  position: relative;
+  flex: 0 0 auto;
+  -webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
+  overflow: hidden;
+} */
+
 .tplist__product-img {
   position: relative;
   flex: 0 0 auto;
@@ -4784,14 +4802,30 @@ input::placeholder {
   -o-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
   overflow: hidden;
+
+  width: 150px;
+  height: 200px;
+
+  object-fit: contain;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.tplist__product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .tplist__product-img .tplist__product-img-two {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
+  width: 150px;
+  height: 200px;
   opacity: 0;
   visibility: hidden;
   -webkit-transition: all 0.3s ease-out 0s;
@@ -4806,9 +4840,9 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
-  only screen and (min-width: 992px) and (max-width: 1199px),
-  only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px) {
+only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .tplist__content {
     margin-left: 0;
   }
@@ -4962,7 +4996,7 @@ input::placeholder {
 /*  12. PRODUCT-DETAILS CSS
 /*----------------------------------------*/
 @media only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px) {
+(max-width: 767px) {
   .tpdetails__area {
     margin-right: 0;
   }
@@ -4975,7 +5009,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
-  (max-width: 767px) {
+(max-width: 767px) {
   .tpdetails__product {
     padding: 20px 20px 16px 20px;
   }
@@ -5143,9 +5177,73 @@ input::placeholder {
   margin-bottom: 30px;
 }
 
+
+
+/* Quantity UI Container */
+.quantity-ui {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  /* Space between quantity controls and button */
+}
+
+/* Quantity Controls */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 24px;
+  padding: 8px 15px;
+  background-color: #f3f3f9;
+}
+
+.quantity-minus,
+.quantity-plus {
+  cursor: pointer;
+  padding: 0px 10px;
+  color: var(--tp-text-body);
+  /* background-color: #4CAF50; */
+  border-radius: 5px;
+  font-size: 10px;
+  transition: background-color 0.3s ease;
+}
+
+
+.quantity-input {
+  width: 40px;
+  /* Fixed width for input */
+  text-align: center;
+  border: none;
+  /* Remove default input border */
+  outline: none;
+  /* Remove focus outline */
+  font-size: 16px;
+  color: #333;
+  background: transparent;
+  /* Transparent background */
+  margin: 0 5px;
+  /* Space between buttons and input */
+}
+
+
+
 @media (max-width: 767px) {
   .product__details-quantity {
     flex-wrap: wrap;
+  }
+
+  .quantity-ui {
+    flex-direction: column;
+    /* Stack elements vertically on small screens */
+    align-items: flex-start;
+  }
+
+  .add-to-cart-btn {
+    width: 100%;
+    /* Full-width button on small screens */
+    margin-top: 10px;
+    /* Space between quantity and button */
   }
 }
 
@@ -5309,7 +5407,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
-  (max-width: 767px) {
+(max-width: 767px) {
   .tpdescription__box {
     padding: 20px 20px 16px 20px;
   }
@@ -5324,8 +5422,8 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
-  only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px) {
+only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .tpdescription__product-wrapper {
     flex-wrap: wrap;
   }
@@ -5414,7 +5512,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px) {
+(max-width: 767px) {
   .tpsidebar {
     margin-left: 0;
   }
@@ -5764,7 +5862,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px) {
+(max-width: 767px) {
   .tpbanner__bg {
     padding: 55px 15px 35px 15px;
   }
@@ -5865,8 +5963,8 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
-  (max-width: 767px),
-  only screen and (min-width: 576px) and (max-width: 767px) {
+(max-width: 767px),
+only screen and (min-width: 576px) and (max-width: 767px) {
   .tpbanner__big-bg {
     background-position: left;
   }
@@ -5903,8 +6001,8 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
-  (max-width: 767px),
-  only screen and (min-width: 576px) and (max-width: 767px) {
+(max-width: 767px),
+only screen and (min-width: 576px) and (max-width: 767px) {
   .tpbanner__bg3 {
     background-position: left;
   }
@@ -5931,7 +6029,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
-  (max-width: 767px) {
+(max-width: 767px) {
   .tpbanner__bg4 {
     background-position: left;
   }
@@ -6121,7 +6219,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px),
-  only screen and (min-width: 576px) and (max-width: 767px) {
+only screen and (min-width: 576px) and (max-width: 767px) {
   .tphero__wrapper p br {
     display: none;
   }
@@ -6227,10 +6325,10 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
-  only screen and (min-width: 992px) and (max-width: 1199px),
-  only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px),
-  only screen and (min-width: 576px) and (max-width: 767px) {
+only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px),
+only screen and (min-width: 576px) and (max-width: 767px) {
   .tpcoundown {
     margin-left: 0;
   }
@@ -6456,8 +6554,8 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px),
-  only screen and (min-width: 576px) and (max-width: 767px) {
+(max-width: 767px),
+only screen and (min-width: 576px) and (max-width: 767px) {
   .tpfeature__thumb {
     text-align: center;
     margin-right: 0;
@@ -6502,7 +6600,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
-  (max-width: 767px) {
+(max-width: 767px) {
   .tpfeature__title br {
     display: none;
   }
@@ -6537,7 +6635,7 @@ input::placeholder {
 }
 
 @media (max-width: 767px),
-  only screen and (min-width: 576px) and (max-width: 767px) {
+only screen and (min-width: 576px) and (max-width: 767px) {
   .tpfeature__product-item {
     margin-bottom: 20px;
   }
@@ -6588,7 +6686,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
-  only screen and (min-width: 768px) and (max-width: 991px) {
+only screen and (min-width: 768px) and (max-width: 991px) {
   .tpfeature__shape-three {
     right: 0px;
   }
@@ -6612,7 +6710,7 @@ input::placeholder {
 }
 
 @media (max-width: 767px),
-  only screen and (min-width: 576px) and (max-width: 767px) {
+only screen and (min-width: 576px) and (max-width: 767px) {
   .tpfeature__box {
     margin-bottom: 30px;
   }
@@ -6636,9 +6734,9 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
-  only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px),
-  only screen and (min-width: 576px) and (max-width: 767px) {
+only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px),
+only screen and (min-width: 576px) and (max-width: 767px) {
   .tpproduct-feature {
     margin-left: 0;
     margin-right: 0;
@@ -6712,10 +6810,10 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
-  only screen and (min-width: 992px) and (max-width: 1199px),
-  only screen and (min-width: 768px) and (max-width: 991px),
-  only screen and (min-width: 576px) and (max-width: 767px),
-  (max-width: 767px) {
+only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 767px) {
   .feature-top {
     margin-top: 0;
   }
@@ -6798,7 +6896,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px) {
+(max-width: 767px) {
   .tpabout__title-img img {
     max-width: 100%;
   }
@@ -6831,8 +6929,8 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px),
-  only screen and (min-width: 576px) and (max-width: 767px) {
+(max-width: 767px),
+only screen and (min-width: 576px) and (max-width: 767px) {
   .tpabout__content p br {
     display: none;
   }
@@ -6956,18 +7054,18 @@ input::placeholder {
   border-radius: 30px;
 }
 
-.tpabout__inner-thumb-2 > img {
+.tpabout__inner-thumb-2>img {
   animation: left-right 3s infinite linear;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-  .tpabout__inner-thumb-2 > img {
+  .tpabout__inner-thumb-2>img {
     width: 420px;
   }
 }
 
 @media (max-width: 767px) {
-  .tpabout__inner-thumb-2 > img {
+  .tpabout__inner-thumb-2>img {
     max-width: 100%;
   }
 }
@@ -7003,8 +7101,8 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px),
-  only screen and (min-width: 992px) and (max-width: 1199px),
-  (max-width: 767px) {
+only screen and (min-width: 992px) and (max-width: 1199px),
+(max-width: 767px) {
   .img-box__content p br {
     display: none;
   }
@@ -7209,7 +7307,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px) {
+(max-width: 767px) {
   .tptestimonial__content p br {
     display: none;
   }
@@ -7236,7 +7334,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
-  (max-width: 767px) {
+(max-width: 767px) {
   .tptestimonial__content2 p br {
     display: none;
   }
@@ -7304,7 +7402,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
-  only screen and (min-width: 992px) and (max-width: 1199px) {
+only screen and (min-width: 992px) and (max-width: 1199px) {
   .testi-arrow.tptestimonial-arrow-left {
     left: 150px;
   }
@@ -7352,14 +7450,14 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 1400px) and (max-width: 1600px),
-  only screen and (min-width: 1200px) and (max-width: 1399px) {
+only screen and (min-width: 1200px) and (max-width: 1399px) {
   .tptestimonial__prv {
     left: 5px;
   }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
-  only screen and (min-width: 768px) and (max-width: 991px) {
+only screen and (min-width: 768px) and (max-width: 991px) {
   .tptestimonial__prv {
     left: 150px;
   }
@@ -7385,14 +7483,14 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 1400px) and (max-width: 1600px),
-  only screen and (min-width: 1200px) and (max-width: 1399px) {
+only screen and (min-width: 1200px) and (max-width: 1399px) {
   .tptestimonial__nxt {
     right: 5px;
   }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
-  only screen and (min-width: 768px) and (max-width: 991px) {
+only screen and (min-width: 768px) and (max-width: 991px) {
   .tptestimonial__nxt {
     right: 150px;
   }
@@ -7421,8 +7519,8 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
-  only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px) {
+only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .tpshop__leftbar {
     margin-right: 0;
   }
@@ -7561,8 +7659,8 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
-  only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px) {
+only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .tpshop__top {
     margin-left: 0;
     margin-top: 30px;
@@ -7574,8 +7672,8 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
-  only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px) {
+only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .tpshop__leftbar-area {
     margin-left: 0;
   }
@@ -7590,8 +7688,8 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
-  only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px) {
+only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .tpshop__sidebar-area {
     margin-right: 0;
     margin-bottom: 50px;
@@ -7891,7 +7989,7 @@ input::placeholder {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px) {
+(max-width: 767px) {
   .tpsubscribe__content p br {
     display: none;
   }
@@ -7926,11 +8024,11 @@ input::placeholder {
   }
 }
 
-.table-content table.table > :not(:first-child) {
+.table-content table.table> :not(:first-child) {
   border-top: 0;
 }
 
-.table-content .table > :not(:last-child) > :last-child > * {
+.table-content .table> :not(:last-child)> :last-child>* {
   border-bottom-color: var(--tp-border-1);
 }
 
@@ -7973,7 +8071,7 @@ input::placeholder {
   border-top: 1px solid var(--tp-border-1);
 }
 
-.product-quantity > input {
+.product-quantity>input {
   width: 80px;
   border-radius: 3px;
 }
@@ -8030,17 +8128,17 @@ input::placeholder {
   padding-top: 50px;
 }
 
-.cart-page-total > h2 {
+.cart-page-total>h2 {
   font-size: 25px;
   margin-bottom: 20px;
   text-transform: capitalize;
 }
 
-.cart-page-total > ul {
+.cart-page-total>ul {
   border: 1px solid var(--tp-border-1);
 }
 
-.cart-page-total > ul > li {
+.cart-page-total>ul>li {
   list-style: none;
   font-size: 15px;
   color: #6f7172;
@@ -8049,7 +8147,7 @@ input::placeholder {
   font-weight: 400;
 }
 
-.cart-page-total ul > li > span {
+.cart-page-total ul>li>span {
   float: right;
 }
 
@@ -8190,7 +8288,7 @@ p.checkout-coupon input[type="submit"]:hover {
   transform: translateY(-3px);
 }
 
-.form-row > label {
+.form-row>label {
   margin-top: 15px;
   margin-left: 15px;
   color: #6f7172;
@@ -8391,7 +8489,7 @@ p.checkout-coupon input[type="text"]:focus {
   border-radius: 0;
 }
 
-.panel-default > .panel-heading {
+.panel-default>.panel-heading {
   border-radius: 0;
 }
 
@@ -8432,6 +8530,7 @@ p.checkout-coupon input[type="text"]:focus {
 }
 
 @media (max-width: 767px) {
+
   .your-order-table table th,
   .your-order-table table td {
     padding-right: 10px;
@@ -8448,7 +8547,7 @@ p.checkout-coupon input[type="text"]:focus {
   width: 250px;
 }
 
-.panel-body > p {
+.panel-body>p {
   color: #222;
 }
 
@@ -8555,7 +8654,7 @@ p.checkout-coupon input[type="text"]:focus {
   border: none;
 }
 
-.panel-title > a {
+.panel-title>a {
   display: block;
 }
 
@@ -8646,8 +8745,8 @@ p.checkout-coupon input[type="text"]:focus {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
-  only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px) {
+only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .tpsoon__title br {
     display: none;
   }
@@ -8662,9 +8761,9 @@ p.checkout-coupon input[type="text"]:focus {
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
-  only screen and (min-width: 992px) and (max-width: 1199px),
-  only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px) {
+only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .tpsoon p br {
     display: none;
   }
@@ -8730,8 +8829,8 @@ p.checkout-coupon input[type="text"]:focus {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
-  only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px) {
+only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .tpsoon__submit-wrapper {
     flex-wrap: wrap;
   }
@@ -8901,8 +9000,8 @@ p.checkout-coupon input[type="text"]:focus {
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
-  only screen and (min-width: 992px) and (max-width: 1199px),
-  (max-width: 767px) {
+only screen and (min-width: 992px) and (max-width: 1199px),
+(max-width: 767px) {
   .tplocation__item {
     flex-wrap: wrap;
     justify-content: center;
@@ -8917,8 +9016,8 @@ p.checkout-coupon input[type="text"]:focus {
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
-  only screen and (min-width: 992px) and (max-width: 1199px),
-  (max-width: 767px) {
+only screen and (min-width: 992px) and (max-width: 1199px),
+(max-width: 767px) {
   .tplocation__img {
     margin-bottom: 20px;
   }
@@ -9309,7 +9408,7 @@ p.checkout-coupon input[type="text"]:focus {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px) {
+(max-width: 767px) {
   .tpfaq__content {
     margin-right: 0;
   }
@@ -9532,10 +9631,12 @@ p.checkout-coupon input[type="text"]:focus {
   box-shadow: none;
 }
 
-.tpfooter__widget-newsletter-check
-  .form-check-input.form-check-input[type="checkbox"] {
+.tpfooter__widget-newsletter-check .form-check-input.form-check-input[type="checkbox"] {
   border-radius: 2px;
 }
+
+
+
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   .tpfooter__copyright {
@@ -9544,7 +9645,7 @@ p.checkout-coupon input[type="text"]:focus {
 }
 
 @media (max-width: 767px),
-  only screen and (min-width: 576px) and (max-width: 767px) {
+only screen and (min-width: 576px) and (max-width: 767px) {
   .tpfooter__copyright {
     margin-bottom: 20px;
   }
@@ -9560,7 +9661,7 @@ p.checkout-coupon input[type="text"]:focus {
 }
 
 @media (max-width: 767px),
-  only screen and (min-width: 576px) and (max-width: 767px) {
+only screen and (min-width: 576px) and (max-width: 767px) {
   .tpfooter__copyright-thumb {
     text-align: center !important;
   }
@@ -9597,9 +9698,9 @@ p.checkout-coupon input[type="text"]:focus {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
-  only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px),
-  only screen and (min-width: 576px) and (max-width: 767px) {
+only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px),
+only screen and (min-width: 576px) and (max-width: 767px) {
   .footer-col-2 {
     margin-left: 0px;
   }
@@ -9616,9 +9717,9 @@ p.checkout-coupon input[type="text"]:focus {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
-  only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px),
-  only screen and (min-width: 576px) and (max-width: 767px) {
+only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px),
+only screen and (min-width: 576px) and (max-width: 767px) {
   .footer-col-3 {
     margin-left: 0px;
   }
@@ -9630,9 +9731,9 @@ p.checkout-coupon input[type="text"]:focus {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
-  only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px),
-  only screen and (min-width: 576px) and (max-width: 767px) {
+only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px),
+only screen and (min-width: 576px) and (max-width: 767px) {
   .footer-col-4 {
     margin-left: 0px;
   }
@@ -9650,9 +9751,9 @@ p.checkout-coupon input[type="text"]:focus {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
-  only screen and (min-width: 768px) and (max-width: 991px),
-  (max-width: 767px),
-  only screen and (min-width: 576px) and (max-width: 767px) {
+only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px),
+only screen and (min-width: 576px) and (max-width: 767px) {
   .footer-col-4::before {
     display: none;
   }

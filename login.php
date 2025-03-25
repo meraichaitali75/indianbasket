@@ -1,7 +1,9 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-session_start();
+// Start session only if not already started
+if (session_status() === PHP_SESSION_NONE) {
+   session_start();
+}
+
 require_once "./includes/db/functions.php";
 
 
@@ -15,16 +17,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
    $result = $user->login($email, $password);
 
-   if ($result === "user" || $result === "admin") { // ✅ Now works for both users & admins
+   if ($result === "user" || $result === "admin") {
       $success = "Login successful! Redirecting Home...";
       echo "<script>setTimeout(() => { window.location.href = 'index.php'; }, 2000);</script>";
    } else {
-      // Ensure $errors is always an array
       $errors = is_array($result) ? $result : [$result];
    }
-   
 }
 ?>
+
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -62,7 +63,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    <!-- header-area-start -->
    <?php include "includes/header.php"; ?>
    <!-- header-area-end -->
-
    <main>
 
       <!-- breadcrumb-area-start -->
@@ -190,4 +190,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <!-- footer-area-end -->
 
 </body>
+
 </html>

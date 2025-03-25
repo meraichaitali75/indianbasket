@@ -2,33 +2,29 @@
 session_start();
 require_once __DIR__ . '/../includes/db/functions.php';
 
-// Check if admin is logged in
+// Redirect to login if not an admin
 if (!isset($_SESSION["admin_email"])) {
     header("Location: login.php");
     exit;
 }
 
-// Create a database connection
-$usersObj = new Functions();
-$conn = $usersObj->getDatabaseConnection();
+$functionsObj = new Functions();
+$conn = $functionsObj->getDatabaseConnection();
 
-// Fetch total number of users
-$userQuery = "SELECT COUNT(*) as total_users FROM users";
-$userResult = $conn->query($userQuery);
-$totalUsers = $userResult->fetch_assoc()['total_users'];
+// Fetch Total Users
+$query = "SELECT COUNT(*) AS total_users FROM users";
+$result = $conn->query($query);
+$totalUsers = $result->fetch_assoc()['total_users'];
 
-// Fetch total number of products
-$productQuery = "SELECT COUNT(*) as total_products FROM products";
-$productResult = $conn->query($productQuery);
-$totalProducts = $productResult->fetch_assoc()['total_products'];
+// Fetch Total Orders
+$query = "SELECT COUNT(*) AS total_orders FROM orders";
+$result = $conn->query($query);
+$totalOrders = $result->fetch_assoc()['total_orders'];
 
-// Fetch total number of orders
-$orderQuery = "SELECT COUNT(*) as total_orders FROM orders";
-$orderResult = $conn->query($orderQuery);
-$totalOrders = $orderResult->fetch_assoc()['total_orders'];
-
-// Close the database connection
-$conn->close();
+// Fetch Total Products
+$query = "SELECT COUNT(*) AS total_products FROM products";
+$result = $conn->query($query);
+$totalProducts = $result->fetch_assoc()['total_products'];
 ?>
 
 <!DOCTYPE html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 06, 2025 at 01:50 PM
+-- Generation Time: Feb 20, 2025 at 03:07 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -200,13 +200,6 @@ INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `email`, `password`, `g
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `billing_addresses`
---
-ALTER TABLE `billing_addresses`
-  ADD PRIMARY KEY (`address_id`),
-  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `users`
