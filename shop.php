@@ -232,6 +232,7 @@ $products = $functions->getProducts();
                                                             <a href="add_to_wishlist.php?product_id=<?= $product['product_id'] ?>"
                                                                 class="wishlist-btn <?= $functions->isInWishlist($_SESSION['user_id'], $product['product_id']) ? 'in-wishlist' : '' ?>">
                                                                 <i class="icon-heart"></i>
+
                                                             </a>
                                                             <!-- <a class="tpproduct__shopping-wishlist" href="#"><i class="icon-layers"></i></a> -->
                                                             <!-- <a class="tpproduct__shopping-cart" href="#"><i class="icon-eye"></i></a> -->
@@ -400,7 +401,7 @@ $products = $functions->getProducts();
                                                         </ul> -->
                                                     </div>
                                                     <div class="tplist__price justify-content-end">
-                                                        <h4 class="tplist__instock">Availability: <span>92 in stock</span> </h4>
+                                                        <!-- <h4 class="tplist__instock">Availability: <span>92 in stock</span> </h4> -->
                                                         <h3 class="tplist__count mb-15">$<?php echo $product['price']; ?></h3>
                                                         <!-- <form action="add_to_cart.php" method="POST" class="add-to-cart-form">
                                                             <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
@@ -427,7 +428,7 @@ $products = $functions->getProducts();
                                                             <!-- <a href="#"><i class="icon-heart icons"></i> wishlist</a> -->
                                                             <a href="add_to_wishlist.php?product_id=<?= $product['product_id'] ?>"
                                                                 class="wishlist-btn <?= $functions->isInWishlist($_SESSION['user_id'], $product['product_id']) ? 'in-wishlist' : '' ?>">
-                                                                <i class="icon-heart"></i>
+                                                                <i class="icon-heart icons"></i> add to wishlist
                                                             </a>
                                                             <!-- <a href="#"><i class="icon-layers"></i>Compare</a> -->
                                                         </div>

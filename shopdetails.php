@@ -30,19 +30,31 @@ if (isset($_GET['product_id'])) {
     exit();
 }
 
+// Check if wishlist action is requested
+if (isset($_GET['wishlist_action'])) {
+    $action = $_GET['wishlist_action'];
+    if ($action === 'add') {
+        $result = $functions->addToWishlist($_SESSION['user_id'], $product_id);
+        $_SESSION['wishlist_message'] = $result['message'];
+    } elseif ($action === 'remove') {
+        $result = $functions->removeFromWishlist($_SESSION['user_id'], $product_id);
+        $_SESSION['wishlist_message'] = $result['message'];
+    }
+    header("Location: shopdetails.php?product_id=" . $product_id);
+    exit();
+}
+
+// Check if product is in wishlist
+$in_wishlist = false;
+if (isset($_SESSION['user_id'])) {
+    $in_wishlist = $functions->isInWishlist($_SESSION['user_id'], $product_id);
+}
 
 // Fetch recent products
 $recent_products = $functions->getRecentProducts(3); // Fetch the latest 3 products
 
-// Fetch product details
-$product = $functions->getProductById($product_id);
-
 // Fetch product images
 $product_images = $functions->getProductImages($product_id);
-
-
-// Fetch product details
-$product = $functions->getProductById($product_id);
 ?>
 
 <!doctype html>
@@ -91,6 +103,23 @@ $product = $functions->getProductById($product_id);
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 1;
+        }
+
+        .wishlist-btn {
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .wishlist-btn:hover {
+            color: #e74c3c;
+        }
+        
+        .wishlist-btn.active {
+            color: #e74c3c;
+        }
+        
+        .wishlist-btn i {
+            margin-right: 5px;
         }
 
         @media (max-width: 768px) {
@@ -143,6 +172,13 @@ $product = $functions->getProductById($product_id);
         <!-- shop-details-area-start -->
         <section class="shopdetails-area grey-bg pb-50">
             <div class="container">
+                <?php if (isset($_SESSION['wishlist_message'])): ?>
+                    <div class="alert alert-info mb-4">
+                        <?php echo $_SESSION['wishlist_message']; ?>
+                        <?php unset($_SESSION['wishlist_message']); ?>
+                    </div>
+                <?php endif; ?>
+                
                 <div class="row">
                     <div class="col-lg-10 col-md-12">
                         <div class="tpdetails__area mr-60 pb-30">
@@ -215,14 +251,12 @@ $product = $functions->getProductById($product_id);
                                                     </div>
                                                     <ul class="product__details-check">
                                                         <li>
-                                                            <a href="#"><i class="icon-heart icons"></i> add to wishlist</a>
+                                                            <a href="?product_id=<?php echo $product_id; ?>&wishlist_action=<?php echo $in_wishlist ? 'remove' : 'add'; ?>" 
+                                                               class="wishlist-btn <?php echo $in_wishlist ? 'active' : ''; ?>">
+                                                                <i class="icon-heart icons"></i> 
+                                                                <?php echo $in_wishlist ? 'Remove from wishlist' : 'Add to wishlist'; ?>
+                                                            </a>
                                                         </li>
-                                                        <!-- <li>
-                                                            <a href="#"><i class="icon-layers"></i> Add to Compare</a>
-                                                        </li> -->
-                                                        <!-- <li>
-                                                            <a href="#"><i class="icon-share-2"></i> Share</a>
-                                                        </li> -->
                                                     </ul>
                                                 </div>
                                                 <div class="product__details-stock mb-25">
@@ -232,10 +266,6 @@ $product = $functions->getProductById($product_id);
                                                         <li>Tags: <span>Chicken, Natural, Organic</span></li>
                                                     </ul>
                                                 </div>
-                                                <!-- <div class="product__details-payment text-center">
-                                                    <img src="assets/img/shape/payment-2.png" alt="">
-                                                    <span>Guarantee safe & Secure checkout</span>
-                                                </div> -->
                                             </div>
                                         </div>
                                     </div>
@@ -266,8 +296,6 @@ $product = $functions->getProductById($product_id);
                                                     <h5 class="tpdescription__product-title">PRODUCT DETAILS</h5>
                                                     <ul class="tpdescription__product-info">
                                                         <li>Material: <?php echo htmlspecialchars($product['material']); ?></li>
-                                                        <!-- <li>Legs: <?php //echo htmlspecialchars($product['legs']); 
-                                                                        ?></li> -->
                                                         <li>Dimensions and Weight: <?php echo htmlspecialchars($product['dimensions']); ?></li>
                                                         <li>Length: <?php echo htmlspecialchars($product['length']); ?></li>
                                                         <li>Depth: <?php echo htmlspecialchars($product['depth']); ?></li>
@@ -296,9 +324,7 @@ $product = $functions->getProductById($product_id);
                                                     </a>
                                                 </div>
                                             </div>
-
                                         </div>
-
                                     </div>
                                     <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab"
                                         tabindex="0">
@@ -409,20 +435,22 @@ $product = $functions->getProductById($product_id);
 
                             <div class="tpsidebar__product">
                                 <h4 class="tpsidebar__title mb-15">Recent Products</h4>
-                                <?php foreach ($recent_products as $product) { ?>
+                                <?php foreach ($recent_products as $recent_product) { 
+                                    $recent_in_wishlist = $functions->isInWishlist($_SESSION['user_id'], $recent_product['product_id']);
+                                ?>
                                     <div class="tpsidebar__product-item">
                                         <div class="tpsidebar__product-thumb p-relative">
-                                            <img src="assets/img/product/<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
+                                            <img src="assets/img/product/<?php echo htmlspecialchars($recent_product['image']); ?>" alt="<?php echo htmlspecialchars($recent_product['name']); ?>">
                                             <div class="tpsidebar__info bage">
                                                 <span class="tpproduct__info-hot bage__hot">HOT</span>
                                             </div>
                                         </div>
                                         <div class="tpsidebar__product-content">
                                             <span class="tpproduct__product-category">
-                                                <a href="shop-details.php?product_id=<?php echo htmlspecialchars($product['product_id']); ?>"><?php echo htmlspecialchars($product['category_name']); ?></a>
+                                                <a href="shopdetails.php?product_id=<?php echo htmlspecialchars($recent_product['product_id']); ?>"><?php echo htmlspecialchars($recent_product['category_name']); ?></a>
                                             </span>
                                             <h4 class="tpsidebar__product-title">
-                                                <a href="shop-details.php?product_id=<?php echo htmlspecialchars($product['product_id']); ?>"><?php echo htmlspecialchars($product['name']); ?></a>
+                                                <a href="shopdetails.php?product_id=<?php echo htmlspecialchars($recent_product['product_id']); ?>"><?php echo htmlspecialchars($recent_product['name']); ?></a>
                                             </h4>
                                             <div class="tpproduct__rating mb-5">
                                                 <a href="#"><i class="icon-star_outline1"></i></a>
@@ -432,8 +460,14 @@ $product = $functions->getProductById($product_id);
                                                 <a href="#"><i class="icon-star_outline1"></i></a>
                                             </div>
                                             <div class="tpproduct__price">
-                                                <span>$<?php echo htmlspecialchars($product['price']); ?></span>
+                                                <span>$<?php echo htmlspecialchars($recent_product['price']); ?></span>
                                                 <del>$19.00</del>
+                                            </div>
+                                            <div class="tpsidebar__product-wishlist">
+                                                <a href="?product_id=<?php echo $recent_product['product_id']; ?>&wishlist_action=<?php echo $recent_in_wishlist ? 'remove' : 'add'; ?>" 
+                                                   class="wishlist-btn <?php echo $recent_in_wishlist ? 'active' : ''; ?>">
+                                                    <i class="icon-heart icons"></i>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -460,28 +494,32 @@ $product = $functions->getProductById($product_id);
                             <?php
                             $related_products = $functions->getRelatedProducts($product['category_id'], $product['product_id']);
                             foreach ($related_products as $related_product) {
+                                $related_in_wishlist = $functions->isInWishlist($_SESSION['user_id'], $related_product['product_id']);
                             ?>
                                 <div class="swiper-slide">
                                     <div class="tpproduct p-relative">
                                         <div class="tpproduct__thumb p-relative text-center">
                                             <a href="#"><img src="./uploads/products/<?php echo htmlspecialchars($related_product['image']); ?>" alt="<?php echo htmlspecialchars($related_product['name']); ?>"></a>
-                                            <a class="tpproduct__thumb-img" href="shop-details.php?product_id=<?php echo htmlspecialchars($related_product['product_id']); ?>"><img src="./uploads/products/<?php echo htmlspecialchars($related_product['image']); ?>" alt="<?php echo htmlspecialchars($related_product['name']); ?>"></a>
+                                            <a class="tpproduct__thumb-img" href="shopdetails.php?product_id=<?php echo htmlspecialchars($related_product['product_id']); ?>"><img src="./uploads/products/<?php echo htmlspecialchars($related_product['image']); ?>" alt="<?php echo htmlspecialchars($related_product['name']); ?>"></a>
                                             <div class="tpproduct__info bage">
                                                 <span class="tpproduct__info-discount bage__discount">-50%</span>
                                                 <span class="tpproduct__info-hot bage__hot">HOT</span>
                                             </div>
                                             <div class="tpproduct__shopping">
-                                                <a class="tpproduct__shopping-wishlist" href="wishlist.php"><i class="icon-heart icons"></i></a>
+                                                <a href="?product_id=<?php echo $related_product['product_id']; ?>&wishlist_action=<?php echo $related_in_wishlist ? 'remove' : 'add'; ?>" 
+                                                   class="tpproduct__shopping-wishlist <?php echo $related_in_wishlist ? 'active' : ''; ?>">
+                                                    <i class="icon-heart icons"></i>
+                                                </a>
                                                 <a class="tpproduct__shopping-wishlist" href="#"><i class="icon-layers"></i></a>
                                                 <a class="tpproduct__shopping-cart" href="#"><i class="icon-eye"></i></a>
                                             </div>
                                         </div>
                                         <div class="tpproduct__content">
                                             <span class="tpproduct__content-weight">
-                                                <a href="shop-details.php?product_id=<?php echo htmlspecialchars($related_product['product_id']); ?>"><?php echo htmlspecialchars($related_product['category_name']); ?></a>
+                                                <a href="shopdetails.php?product_id=<?php echo htmlspecialchars($related_product['product_id']); ?>"><?php echo htmlspecialchars($related_product['category_name']); ?></a>
                                             </span>
                                             <h4 class="tpproduct__title">
-                                                <a href="shop-details.php?product_id=<?php echo htmlspecialchars($related_product['product_id']); ?>"><?php echo htmlspecialchars($related_product['name']); ?></a>
+                                                <a href="shopdetails.php?product_id=<?php echo htmlspecialchars($related_product['product_id']); ?>"><?php echo htmlspecialchars($related_product['name']); ?></a>
                                             </h4>
                                             <div class="tpproduct__rating mb-5">
                                                 <a href="#"><i class="icon-star_outline1"></i></a>
@@ -498,7 +536,7 @@ $product = $functions->getProductById($product_id);
                                         <div class="tpproduct__hover-text">
                                             <div class="tpproduct__hover-btn d-flex justify-content-center mb-10">
                                                 <form action="add_to_cart.php" method="POST" class="add-to-cart-form">
-                                                    <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
+                                                    <input type="hidden" name="product_id" value="<?php echo $related_product['product_id']; ?>">
                                                     <div class="product__details-quantity d-flex align-items-center">
                                                         <span class="cart-minus"><i class="far fa-minus"></i></span>
                                                         <input class="tp-cart-input" type="text" name="quantity" value="1">
@@ -509,12 +547,12 @@ $product = $functions->getProductById($product_id);
                                             </div>
                                             <div class="tpproduct__descrip">
                                                 <?php
-                                                $mfg_date = !empty($product['mfg_date']) ? new DateTime($product['mfg_date']) : null;
+                                                $mfg_date = !empty($related_product['mfg_date']) ? new DateTime($related_product['mfg_date']) : null;
                                                 ?>
                                                 <ul>
-                                                    <li>Type: <?php echo !empty($product['type']) ? htmlspecialchars($product['type']) : 'Not specified'; ?></li>
+                                                    <li>Type: <?php echo !empty($related_product['type']) ? htmlspecialchars($related_product['type']) : 'Not specified'; ?></li>
                                                     <li>MFG: <?php echo $mfg_date ? $mfg_date->format('F j, Y') : 'Not specified'; ?></li>
-                                                    <li>LIFE: <?php echo !empty($product['life_days']) ? htmlspecialchars($product['life_days']) . ' days' : 'Not specified'; ?></li>
+                                                    <li>LIFE: <?php echo !empty($related_product['life_days']) ? htmlspecialchars($related_product['life_days']) . ' days' : 'Not specified'; ?></li>
                                                 </ul>
                                             </div>
                                         </div>

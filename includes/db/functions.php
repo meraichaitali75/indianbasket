@@ -322,6 +322,29 @@ class Functions
         }
         return $addresses;
     }
+    //Get active banners 
+    public function getAllBanners()
+    {
+        $stmt = $this->db->conn->prepare("SELECT * FROM banners ORDER BY created_at DESC");
+        if ($stmt === false) {
+            error_log("Prepare failed: " . $this->db->conn->error);
+            return [];
+        }
+
+        if (!$stmt->execute()) {
+            error_log("Execute failed: " . $stmt->error);
+            return [];
+        }
+
+        $result = $stmt->get_result();
+        $banners = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $banners[] = $row;
+        }
+
+        return $banners;
+    }
 
     // Add Billing address
     public function addBillingAddress($user_id, $firstname, $lastname, $email, $phone, $country, $province, $city, $street_address, $zip_code, $landmark, $address_type)
