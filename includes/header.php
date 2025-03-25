@@ -80,8 +80,8 @@ foreach ($cartItems as $item) {
                                     <li>
                                         <a href="shop.php">Shop</a>
                                     </li>
-                                    <li><a href="#">About Us</a></li>
-                                    <li><a href="#">Contact Us</a></li>
+                                    <li><a href="about.php">About Us</a></li>
+                                    <li><a href="contact.php">Contact Us</a></li>
                                     <li>
                                         <a href="login.php">Sign In</a>
                                     </li>
@@ -91,9 +91,9 @@ foreach ($cartItems as $item) {
                     </div>
                     <div class="col-xl-3">
                         <div class="header__info d-flex align-items-center">
-                            <div class="header__info-search tpcolor__purple ml-10">
+                            <!-- <div class="header__info-search tpcolor__purple ml-10">
                                 <button class="tp-search-toggle"><i class="icon-search"></i></button>
-                            </div>
+                            </div> -->
                             <div class="header__info-user tpcolor__yellow ml-10">
                                 <a href="profile.php"><i class="icon-user"></i></a>
                             </div>

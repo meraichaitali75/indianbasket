@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2025 at 09:25 PM
+-- Generation Time: Mar 26, 2025 at 12:08 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -44,7 +44,8 @@ CREATE TABLE `banners` (
 
 INSERT INTO `banners` (`id`, `image`, `created_at`, `title`, `meta_description`, `keywords`, `target_url`, `status`) VALUES
 (3, 'uploads/banners/slider-bg-1.png', '2025-03-20 20:04:39', 'Choose Your Healthy Lifestyle.', 'Presentation matters. Our fresh Vietnamese vegetable rolls ', 'test, test1', '', 'inactive'),
-(4, 'uploads/banners/slider-bg-2.png', '2025-03-22 04:47:56', 'Fresh Bread Oatmeal Crumble. ', 'Presentation matters. Our fresh Vietnamese vegetable rolls.', 'test, test1', '', 'inactive');
+(4, 'uploads/banners/slider-bg-2.png', '2025-03-22 04:47:56', 'Fresh Bread Oatmeal Crumble. ', 'Presentation matters. Our fresh Vietnamese vegetable rolls.', 'test, test1', '', 'inactive'),
+(5, 'uploads/banners/1742943243_seafood-product1.png', '2025-03-25 22:54:03', 'Healthy Lifestyle', 'Healthy Lifestyle', 'Healthy Lifestyle', '', 'active');
 
 -- --------------------------------------------------------
 
@@ -111,7 +112,8 @@ INSERT INTO `blogs` (`id`, `user_id`, `title`, `meta_title`, `content`, `image`,
 (4, 34, 'How to Store Fresh Vegetables for Maximum Shelf Life', 'Vegetable Storage Tips', 'Proper storage can significantly extend the life of your fresh vegetables. Here are our top tips:\r\n1. Leafy Greens: Wrap in paper towels and store in airtight containers\r\n2. Root Vegetables: Store in cool, dark places (not necessarily the fridge)\r\n3. Tomatoes: Keep at room temperature until ripe\r\n4. Onions & Garlic: Need air circulation - store in mesh bags\r\n5. Potatoes: Keep away from onions to prevent sprouting\r\n6. Cucumbers: Store at room temperature for short term, fridge for longer storage\r\n7. Eggplants: Prefer slightly cooler temperatures but not cold\r\n8. Peppers: Can be stored in fridge crisper drawer\r\n\r\nFollow these tips to reduce waste and enjoy fresh produce longer from your Indian Basket purchases!', 'uploads/blogs/blog-bg-3.jpg', 'active', '2025-03-18 18:30:00', 'Learn professional techniques to store fresh vegetables properly and make them last longer in your kitchen.', 'vegetable storage, fresh produce, food preservation, reduce waste', 'vegetable-storage-tips'),
 (5, 37, 'The Health Benefits of Traditional Indian Superfoods', 'Indian Superfoods Benefits', 'India has been using superfoods for centuries before they became trendy worldwide. Here are some powerful ones:\r\n1. Moringa (Drumstick leaves) - Packed with nutrients\r\n2. Turmeric - Powerful anti-inflammatory\r\n3. Ghee - Healthy fats for brain function\r\n4. Amla (Indian Gooseberry) - Vitamin C powerhouse\r\n5. Jaggery - Mineral-rich natural sweetener\r\n6. Bajra (Pearl Millet) - Gluten-free grain\r\n7. Ragi (Finger Millet) - High in calcium\r\n8. Sabja Seeds (Basil Seeds) - Great for digestion\r\n\r\nIncorporate these into your diet for natural health benefits. All available at Indian Basket!', 'uploads/blogs/blog-bg-4.jpg', 'active', '2025-03-15 13:15:00', 'Discover the amazing health benefits of traditional Indian superfoods that have been used for centuries.', 'indian superfoods, health benefits, traditional foods, nutrition', 'indian-superfoods-benefits'),
 (6, 34, '5 Easy Indian Snacks You Can Make in Under 15 Minutes', 'Quick Indian Snack Recipes', 'Craving something delicious but short on time? Try these quick Indian snacks:\r\n1. Masala Peanuts - Toss roasted peanuts with chaat masala\r\n2. Besan Chilla - Savory gram flour pancakes\r\n3. Sprout Chaat - Healthy and protein-packed\r\n4. Microwave Poha - Flattened rice with spices\r\n5. Fruit Chaat - Seasonal fruits with chaat masala\r\n\r\nAll ingredients available at Indian Basket. Perfect for unexpected guests or sudden cravings!', 'uploads/blogs/blog-bg-5.jpg', 'active', '2025-03-10 20:45:00', 'These 5 easy Indian snack recipes can be prepared in under 15 minutes using ingredients from Indian Basket.', 'quick snacks, indian recipes, easy cooking, instant snacks', 'quick-indian-snacks'),
-(7, 37, 'Festival Special: How to Make Perfect Diwali Sweets at Home', 'Diwali Sweet Recipes', 'Diwali is incomplete without sweets! Here are some traditional recipes:\r\n1. Besan Ladoo - Roasted gram flour sweets\r\n2. Kaju Katli - Cashew fudge slices\r\n3. Gulab Jamun - Soft milk dumplings in syrup\r\n4. Coconut Barfi - Sweet coconut squares\r\n5. Soan Papdi - Flaky layered sweet\r\n\r\nWe have all the ingredients you need - premium quality ghee, fresh nuts, pure khoya, and more at Indian Basket!', 'uploads/blogs/blog-bg-6.jpg', 'active', '2025-03-05 16:20:00', 'Learn to make perfect traditional Diwali sweets at home with ingredients from Indian Basket.', 'diwali sweets, festival recipes, indian desserts, homemade mithai', 'diwali-sweet-recipes');
+(7, 37, 'Festival Special: How to Make Perfect Diwali Sweets at Home', 'Diwali Sweet Recipes', 'Diwali is incomplete without sweets! Here are some traditional recipes:\r\n1. Besan Ladoo - Roasted gram flour sweets\r\n2. Kaju Katli - Cashew fudge slices\r\n3. Gulab Jamun - Soft milk dumplings in syrup\r\n4. Coconut Barfi - Sweet coconut squares\r\n5. Soan Papdi - Flaky layered sweet\r\n\r\nWe have all the ingredients you need - premium quality ghee, fresh nuts, pure khoya, and more at Indian Basket!', 'uploads/blogs/blog-bg-6.jpg', 'active', '2025-03-05 16:20:00', 'Learn to make perfect traditional Diwali sweets at home with ingredients from Indian Basket.', 'diwali sweets, festival recipes, indian desserts, homemade mithai', 'diwali-sweet-recipes'),
+(8, 34, 'Test', 'Test', 'Test', 'uploads/blogs/1742942924_product_67e221aaad4d82.29663771.png', 'inactive', '2025-03-25 22:48:44', 'Test', 'Test', 'Test');
 
 -- --------------------------------------------------------
 
@@ -131,14 +133,14 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`category_id`, `name`, `image`, `item_count`) VALUES
-(1, 'Vegetables', 'category-1.jpg', 0),
-(3, 'Fresh Fruits', 'category-2.jpg', 0),
-(4, 'Fruit Drink', 'category-3.jpg', 0),
-(5, 'Fresh Bakery', 'category-4.jpg', 0),
-(6, 'Biscuits Snack', 'category-5.jpg', 0),
-(7, 'Fresh Meat', 'category-6.jpg', 0),
-(8, 'Fresh Milk', 'category-7.jpg', 0),
-(9, 'Sea Foods', 'category-8 (1).jpg', 0);
+(1, 'Vegetables', 'category-1.jpg', 100),
+(3, 'Fresh Fruits', 'category-2.jpg', 200),
+(4, 'Fruit Drink', 'category-3.jpg', 100),
+(5, 'Fresh Bakery', 'category-4.jpg', 100),
+(6, 'Biscuits Snack', 'category-5.jpg', 200),
+(7, 'Fresh Meat', 'category-6.jpg', 100),
+(8, 'Fresh Milk', 'category-7.jpg', 150),
+(9, 'Sea Foods', 'category-8 (1).jpg', 100);
 
 -- --------------------------------------------------------
 
@@ -236,14 +238,16 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `name`, `category_id`, `price`, `stock`, `description`, `image`, `material`, `legs`, `dimensions`, `length`, `depth`, `additional_details`, `video_url`, `type`, `mfg_date`, `life_days`) VALUES
-(1, 'Mangosteen Organic From Vietnamese', 3, 162.80, 100, 'Designed by Puik in 1949 as one of the first models created especially for Carl Hansen & Son, and produced since 1950. The last of a series of chairs wegner designed based on inspiration from antique chinese armchairs. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia eserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, aque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.', 'product1.png', 'Plastic, Wood', 'Lacquered oak and black painted oak', 'Height: 80 cm, Weight: 5.3 kg', '48cm', '52 cm', 'Form is an armless modern chair with a minimalistic expression. With a simple and contemporary design Form Chair has a soft and welcoming ilhouette and a distinctly residential look. The legs appear almost as if they are growing out of the shell. This gives the design flexibility and makes it possible to vary the frame. Unika is a mouth blown series of small, glass pendant lamps, originally designed for the Restaurant Gronbech. Est eum itaque maiores qui blanditiis architecto. Eligendi saepe rem ut. Cumque quia earum eligendi.', 'https://www.youtube.com/watch?v=rLrV5Tel7zw', 'Organic', '2021-08-04', 60),
+(1, 'Mangosteen Organic From Vietnamese', 3, 100.00, 100, 'Designed by Puik in 1949 as one of the first models created especially for Carl Hansen & Son, and produced since 1950. The last of a series of chairs wegner designed based on inspiration from antique chinese armchairs. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia eserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, aque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.', 'main_67e33008c1f244.86398812.png', 'Plastic, Wood', 'Lacquered oak and black painted oak', 'Height: 80 cm, Weight: 5.3 kg', '48cm', '52 cm', 'Form is an armless modern chair with a minimalistic expression. With a simple and contemporary design Form Chair has a soft and welcoming ilhouette and a distinctly residential look. The legs appear almost as if they are growing out of the shell. This gives the design flexibility and makes it possible to vary the frame. Unika is a mouth blown series of small, glass pendant lamps, originally designed for the Restaurant Gronbech. Est eum itaque maiores qui blanditiis architecto. Eligendi saepe rem ut. Cumque quia earum eligendi.', 'https://www.youtube.com/watch?v=rLrV5Tel7zw', 'Organic', '2021-08-04', 60),
 (2, 'Quaker Popped Rice Crisps Snacks', 1, 162.80, 200, 'Delicious chocolate-flavored rice crisps.', 'product2.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (3, 'HOT - Lettuce Fresh Produce', 1, 50.00, 150, 'Fresh lettuce for salads and sandwiches.', 'product3.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (4, 'Organic Apples', 1, 30.00, 300, 'Fresh organic apples.', 'product4.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (5, 'Bananas test', 1, 200.00, 50, 'Ripe and sweet bananas. test', 'product5.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (12, 'test2', 1, 501.00, 20, 'test2', 'product6.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (13, 'test3', 1, 2000.00, 10, 'test3', 'product7.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(14, 'Fresh Beef', 9, 99.98, 9, 'These are the people who make your life easier. Large tiles were arranged on the counter top plate near the window of the living room, they were connected to the kitchen.', 'product8.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(14, 'Fresh Beef', 9, 99.98, 9, 'These are the people who make your life easier. Large tiles were arranged on the counter top plate near the window of the living room, they were connected to the kitchen.', 'product8.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(15, 'test', 9, 100.00, 100, 'test', 'main_67e3308927eb66.26425625.png', 'Plastic, Wood', '10', 'Height: 80 cm, Weight: 5.3 kg', '48cm', '52 cm', 'test', 'https://www.youtube.com/watch?v=rLrV5Tel7zw', 'test', '2025-03-28', 56),
+(16, 'test', 9, 30.00, 100, 'test', 'main_67e3305796ea66.04753946.png', 'test', 'test', 'Height: 80 cm, Weight: 5.3 kg', '48cm', '52 cm', 'test', 'https://www.youtube.com/watch?v=rLrV5Tel7zw', 'test', '2025-03-29', 30);
 
 -- --------------------------------------------------------
 
@@ -262,11 +266,14 @@ CREATE TABLE `product_images` (
 --
 
 INSERT INTO `product_images` (`image_id`, `product_id`, `image_path`) VALUES
-(1, 1, 'product1-image1.png'),
-(2, 1, 'product1-image2.png'),
-(3, 1, 'product1-image3.png'),
 (4, 2, 'product2-image1.png'),
-(5, 2, 'product2-image2.png');
+(5, 2, 'product2-image2.png'),
+(28, 15, 'product_67e326a90a92e2.55599102.png'),
+(31, 1, 'additional_67e33008c22d25.43308074.png'),
+(32, 1, 'additional_67e33008c24840.60079057.png'),
+(33, 16, 'additional_67e33057971fe3.99041043.png'),
+(34, 16, 'additional_67e33057974fc9.90012612.png'),
+(35, 15, 'additional_67e33089280b19.45070115.png');
 
 -- --------------------------------------------------------
 
@@ -441,7 +448,7 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `banners`
 --
 ALTER TABLE `banners`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `billing_addresses`
@@ -453,25 +460,25 @@ ALTER TABLE `billing_addresses`
 -- AUTO_INCREMENT for table `blogs`
 --
 ALTER TABLE `blogs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `users`
