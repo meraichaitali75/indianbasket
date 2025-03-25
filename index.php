@@ -146,13 +146,13 @@ $latestCategories = $functions->getLatestCategories(5);
                         <div class="swiper-slide">
                            <div class="category__item mb-30">
                               <div class="category__thumb fix mb-15">
-                                 <a href="shop-details-3.html">
+                                 <a href="shop.php">
                                     <img src="uploads/categories/<?php echo $category['image']; ?>" alt="<?php echo $category['name']; ?>">
                                  </a>
                               </div>
                               <div class="category__content">
                                  <h5 class="category__title">
-                                    <a href="shop-details-3.html"><?php echo $category['name']; ?></a>
+                                    <a href="shop.php"><?php echo $category['name']; ?></a>
                                  </h5>
                                  <span class="category__count"><?php echo $category['item_count']; ?> items</span>
                               </div>
@@ -338,7 +338,7 @@ $latestCategories = $functions->getLatestCategories(5);
                                           <div class="swiper-slide">
                                              <div class="tpproduct p-relative">
                                                 <div class="tpproduct__thumb p-relative text-center">
-                                                   <a href="shop-details-4.html">
+                                                   <a href="shop.php">
                                                       <img src="uploads/products/<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>">
                                                    </a>
                                                    <div class="tpproduct__info bage">
@@ -353,18 +353,18 @@ $latestCategories = $functions->getLatestCategories(5);
                                                 </div>
                                                 <div class="tpproduct__content">
                                                    <span class="tpproduct__content-weight">
-                                                      <a href="shop-details-4.html"><?php echo $product['category_name']; ?></a>
+                                                      <a href="shopdetails.php"><?php echo $product['category_name']; ?></a>
                                                    </span>
                                                    <h4 class="tpproduct__title">
-                                                      <a href="shop-details-4.html"><?php echo $product['name']; ?></a>
+                                                      <a href="shop.php"><?php echo $product['name']; ?></a>
                                                    </h4>
-                                                   <div class="tpproduct__rating mb-5">
+                                                   <!-- <div class="tpproduct__rating mb-5">
                                                       <a href="#"><i class="icon-star_outline1"></i></a>
                                                       <a href="#"><i class="icon-star_outline1"></i></a>
                                                       <a href="#"><i class="icon-star_outline1"></i></a>
                                                       <a href="#"><i class="icon-star_outline1"></i></a>
                                                       <a href="#"><i class="icon-star_outline1"></i></a>
-                                                   </div>
+                                                   </div> -->
                                                    <div class="tpproduct__price">
                                                       <span>$<?php echo $product['price']; ?></span>
                                                       <del>$<?php echo $product['price'] + rand(5, 20); ?></del>
@@ -372,7 +372,7 @@ $latestCategories = $functions->getLatestCategories(5);
                                                 </div>
                                                 <div class="tpproduct__hover-text">
                                                    <div class="tpproduct__hover-btn d-flex justify-content-center mb-10">
-                                                      <a class="tp-btn-2" href="shop-details-4.html">Add to cart</a>
+                                                      <a class="tp-btn-2" href="shop.php">Add to cart</a>
                                                    </div>
                                                    <div class="tpproduct__descrip">
                                                       <ul>
@@ -421,7 +421,7 @@ $latestCategories = $functions->getLatestCategories(5);
                                                 <div class="swiper-slide">
                                                    <div class="tpproduct p-relative">
                                                       <div class="tpproduct__thumb p-relative text-center">
-                                                         <a href="shop-details-4.html">
+                                                         <a href="shop.php">
                                                             <img src="uploads/products/<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>">
                                                          </a>
                                                          <div class="tpproduct__info bage">
@@ -436,10 +436,10 @@ $latestCategories = $functions->getLatestCategories(5);
                                                       </div>
                                                       <div class="tpproduct__content">
                                                          <span class="tpproduct__content-weight">
-                                                            <a href="shop-details-4.html"><?php echo $product['category_name']; ?></a>
+                                                            <a href="shop.php"><?php echo $product['category_name']; ?></a>
                                                          </span>
                                                          <h4 class="tpproduct__title">
-                                                            <a href="shop-details-4.html"><?php echo $product['name']; ?></a>
+                                                            <a href="shop.php"><?php echo $product['name']; ?></a>
                                                          </h4>
                                                          <div class="tpproduct__rating mb-5">
                                                             <a href="#"><i class="icon-star_outline1"></i></a>
@@ -455,7 +455,7 @@ $latestCategories = $functions->getLatestCategories(5);
                                                       </div>
                                                       <div class="tpproduct__hover-text">
                                                          <div class="tpproduct__hover-btn d-flex justify-content-center mb-10">
-                                                            <a class="tp-btn-2" href="shop-details-4.html">Add to cart</a>
+                                                            <a class="tp-btn-2" href="shop.php">Add to cart</a>
                                                          </div>
                                                          <div class="tpproduct__descrip">
                                                             <ul>

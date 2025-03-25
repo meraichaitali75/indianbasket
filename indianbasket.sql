@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2025 at 04:33 PM
+-- Generation Time: Mar 25, 2025 at 09:25 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -43,8 +43,8 @@ CREATE TABLE `banners` (
 --
 
 INSERT INTO `banners` (`id`, `image`, `created_at`, `title`, `meta_description`, `keywords`, `target_url`, `status`) VALUES
-(3, 'uploads/banners/1742501079_slider-bg-1.png', '2025-03-20 20:04:39', 'Alt', 'Meta Test', 'test, test1', '', 'inactive'),
-(4, 'uploads/banners/1742618876_slider-bg-1.png', '2025-03-22 04:47:56', 'Banner image', 'Meta Meta', 'test, test1', '', 'inactive');
+(3, 'uploads/banners/slider-bg-1.png', '2025-03-20 20:04:39', 'Choose Your Healthy Lifestyle.', 'Presentation matters. Our fresh Vietnamese vegetable rolls ', 'test, test1', '', 'inactive'),
+(4, 'uploads/banners/slider-bg-2.png', '2025-03-22 04:47:56', 'Fresh Bread Oatmeal Crumble. ', 'Presentation matters. Our fresh Vietnamese vegetable rolls.', 'test, test1', '', 'inactive');
 
 -- --------------------------------------------------------
 
@@ -363,7 +363,10 @@ CREATE TABLE `wishlist` (
 INSERT INTO `wishlist` (`wishlist_id`, `user_id`, `product_id`, `created_at`) VALUES
 (1, 41, 2, '2025-03-25 02:04:59'),
 (2, 41, 1, '2025-03-25 03:00:30'),
-(4, 37, 14, '2025-03-25 15:31:36');
+(13, 37, 2, '2025-03-25 16:56:56'),
+(14, 37, 5, '2025-03-25 16:58:07'),
+(15, 37, 14, '2025-03-25 16:58:36'),
+(16, 37, 13, '2025-03-25 17:08:25');
 
 --
 -- Indexes for dumped tables
@@ -480,7 +483,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `wishlist`
 --
 ALTER TABLE `wishlist`
-  MODIFY `wishlist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `wishlist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables
