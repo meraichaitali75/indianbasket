@@ -704,6 +704,7 @@ class Functions
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    // Afunction to filter records for shop page
     public function getFilteredProducts($category_ids = [], $min_price = 0, $max_price = 1000)
     {
         // Build the SQL query
@@ -726,6 +727,9 @@ class Functions
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+
+    // Add to wishlist with improved error handling
     public function addToWishlist($user_id, $product_id)
     {
         try {
@@ -758,6 +762,7 @@ class Functions
         }
     }
 
+    // Remove from wishlist with improved error handling
     public function removeFromWishlist($user_id, $product_id)
     {
         try {
@@ -781,6 +786,7 @@ class Functions
         }
     }
 
+    // Check if product is in wishlist
     public function isInWishlist($user_id, $product_id)
     {
         try {
@@ -807,12 +813,13 @@ class Functions
         }
     }
 
+    // Get wishlist items with product details
     public function getWishlistItems($user_id)
     {
         try {
             $sql = "SELECT p.* FROM products p 
-                    JOIN wishlist w ON p.product_id = w.product_id 
-                    WHERE w.user_id = ?";
+                JOIN wishlist w ON p.product_id = w.product_id 
+                WHERE w.user_id = ?";
             $stmt = $this->db->conn->prepare($sql);
 
             if (!$stmt) {
@@ -826,7 +833,16 @@ class Functions
             }
 
             $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
+            $items = $result->fetch_all(MYSQLI_ASSOC);
+
+            // Ensure each item has all required fields
+            foreach ($items as &$item) {
+                if (!isset($item['image'])) {
+                    $item['image'] = 'default-product.png';
+                }
+            }
+
+            return $items;
         } catch (Exception $e) {
             error_log("Wishlist Error: " . $e->getMessage());
             return [];
@@ -842,7 +858,7 @@ class Functions
         WHERE b.status = 'active'
         ORDER BY b.created_at DESC 
         LIMIT ?
-    ");
+        ");
         $stmt->bind_param("i", $limit);
         $stmt->execute();
         $result = $stmt->get_result();

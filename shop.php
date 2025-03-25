@@ -90,12 +90,12 @@ $products = $functions->getProducts();
                                 $categories = $functions->getCategories(); // Ensure this method exists in your Functions class
                                 foreach ($categories as $category) {
                                     echo '
-            <div class="form-check">
-                <input class="form-check-input category-filter" type="checkbox" value="' . $category['category_id'] . '" id="category-' . $category['category_id'] . '">
-                <label class="form-check-label" for="category-' . $category['category_id'] . '">
-                    ' . $category['name'] . ' (' . $category['product_count'] . ')
-                </label>
-            </div>';
+                                    <div class="form-check">
+                                        <input class="form-check-input category-filter" type="checkbox" value="' . $category['category_id'] . '" id="category-' . $category['category_id'] . '">
+                                        <label class="form-check-label" for="category-' . $category['category_id'] . '">
+                                            ' . $category['name'] . ' (' . $category['product_count'] . ')
+                                        </label>
+                                    </div>';
                                 }
                                 ?>
                             </div>
@@ -339,16 +339,6 @@ $products = $functions->getProducts();
                                                     </div>
                                                     <div class="tpproduct__hover-text">
                                                         <div class="tpproduct__hover-btn d-flex justify-content-center mb-0">
-                                                            <!-- <form action="add_to_cart.php" method="POST" class="add-to-cart-form">
-                                                                <input type="hidden" name="product_id" value="<?php //echo $product['product_id']; 
-                                                                                                                ?>">
-                                                                <div class="product__details-quantity d-flex align-items-center">
-                                                                    <span class="cart-minus"><i class="far fa-minus"></i></span>
-                                                                    <input class="tp-cart-input" type="text" name="quantity" value="1">
-                                                                    <span class="cart-plus"><i class="far fa-plus"></i></span>
-                                                                </div>
-                                                                <button type="submit" class="tp-btn-2">Add to cart</button>
-                                                            </form> -->
                                                             <form action="add_to_cart.php" method="POST" class="add-to-cart-form">
                                                                 <div class="product__details-quantity quantity-ui">
                                                                     <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
