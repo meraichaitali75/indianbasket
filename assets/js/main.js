@@ -29,25 +29,33 @@
 		}
 	});
 
-	
+
 	////////////////////////////////////////////////////
-	// 03. Swiper Js
-	$('.cart-minus').on('click', function () {
-		var $input = $(this).parent().find('input');
-		var count = parseInt($input.val()) - 1;
-		count = count < 1 ? 1 : count;
-		$input.val(count);
-		$input.change();
-		return false;
-	});
+	// 	shop detail quantity
+	// document.addEventListener('DOMContentLoaded', function () {
+	// 	// Handle minus button click
+	// 	document.querySelectorAll('.cart-minus').forEach(function (minus) {
+	// 		minus.addEventListener('click', function (event) {
+	// 			event.preventDefault(); // Prevent default form submission
+	// 			let input = this.closest('.product__details-quantity').querySelector('.tp-cart-input');
+	// 			let value = parseInt(input.value);
+	// 			if (value > 1) {
+	// 				input.value = value - 1;
+	// 			}
+	// 		});
+	// 	});
 
-	$('.cart-plus').on('click', function () {
-		var $input = $(this).parent().find('input');
-		$input.val(parseInt($input.val()) + 1);
-		$input.change();
-		return false;
-	});
-
+	// 	// Handle plus button click
+	// 	document.querySelectorAll('.cart-plus').forEach(function (plus) {
+	// 		plus.addEventListener('click', function (event) {
+	// 			event.preventDefault(); // Prevent default form submission
+	// 			let input = this.closest('.product__details-quantity').querySelector('.tp-cart-input');
+	// 			let value = parseInt(input.value);
+	// 			input.value = value + 1;
+	// 		});
+	// 	});
+	// });
+	
 
 	////////////////////////////////////////////////////
 	// 04. Show Login Toggle Js
@@ -73,7 +81,7 @@
 		$('#ship-box-info').slideToggle(1000);
 	});
 
-	
+
 	///////////////////////////////////////////////////
 	// 08.  Scroll to top
 	windowOn.on('scroll', function () {
@@ -91,12 +99,12 @@
 	// 09. Scroll Up Js
 	if ($('.scroll-to-target').length) {
 		$(".scroll-to-target").on('click', function () {
-		var target = $(this).attr('data-target');
-		// animate
-		$('html, body').animate({
-			scrollTop: $(target).offset().top
-		}, 1000);
-	
+			var target = $(this).attr('data-target');
+			// animate
+			$('html, body').animate({
+				scrollTop: $(target).offset().top
+			}, 1000);
+
 		});
 	}
 
@@ -140,8 +148,8 @@
 	////////////////////////////////////////////////////
 	// 14. Parallax pera
 	if ($(".pera").length) {
-	var pera = $('.pera').get(0);
-	var parallaxInstance = new Parallax(pera);
+		var pera = $('.pera').get(0);
+		var parallaxInstance = new Parallax(pera);
 	}
 	if ($(".pera2").length) {
 		var pera = $('.pera2').get(0);
@@ -497,7 +505,7 @@
 	});
 
 
-	
+
 	////////////////////////////////////////////////////
 	// 30. Slider Js
 	var categoryswiper = new Swiper('.blog-active-3', {
@@ -1003,40 +1011,8 @@
 		},
 	});
 
+
 	
-	////////////////////////////////////////////////////
-	// 44. Price Filter Js
-	if ($("#slider-range").length) {
 
-		$("#slider-range").slider({
-
-			range: true,
-
-			min: 0,
-
-			max: 1000,
-
-			values: [0, 500],
-
-			slide: function (event, ui) {
-
-				$("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-
-			}
-
-		});
-
-		$("#amount").val("$" + $("#slider-range").slider("values", 0) +
-
-			" - $" + $("#slider-range").slider("values", 1));
-
-		$('#filter-btn').on('click', function () {
-
-			$('.filter-widget').slideToggle(1000);
-
-		});
-
-	}
-	
 
 })(jQuery);

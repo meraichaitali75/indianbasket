@@ -21,20 +21,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create_product"])) {
     $price = floatval($_POST["price"]);
     $stock = intval($_POST["stock"]);
     $description = trim($_POST["description"]);
+    $image = $_FILES["image"]["name"];
+    $target_dir = "../uploads/products/";
+    $target_file = $target_dir . basename($image);
 
     if (empty($name) || empty($category_id) || empty($price) || empty($stock)) {
         $errors[] = "All fields are required except description.";
     } else {
-        $query = "INSERT INTO products (name, category_id, price, stock, description) VALUES (?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("sidis", $name, $category_id, $price, $stock, $description); // 5 variables
+        // Check if image file is a actual image or fake image
+        $check = getimagesize($_FILES["image"]["tmp_name"]);
+        if ($check !== false) {
+            if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                $query = "INSERT INTO products (name, category_id, price, stock, description, image) VALUES (?, ?, ?, ?, ?, ?)";
+                $stmt = $conn->prepare($query);
+                $stmt->bind_param("sidiss", $name, $category_id, $price, $stock, $description, $image);
 
-        if ($stmt->execute()) {
-            $success = "Product created successfully!";
-            header("Location: products.php");
-            exit();
+                if ($stmt->execute()) {
+                    $success = "Product created successfully!";
+                    header("Location: products.php");
+                    exit();
+                } else {
+                    $errors[] = "Error creating product.";
+                }
+            } else {
+                $errors[] = "Sorry, there was an error uploading your file.";
+            }
         } else {
-            $errors[] = "Error creating product.";
+            $errors[] = "File is not an image.";
         }
     }
 }
@@ -47,13 +60,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_product"])) {
     $price = floatval($_POST["price"]);
     $stock = intval($_POST["stock"]);
     $description = trim($_POST["description"]);
+    $image = $_FILES["image"]["name"];
+    $target_dir = "../uploads/products/";
+    $target_file = $target_dir . basename($image);
 
     if (empty($name) || empty($category_id) || empty($price) || empty($stock)) {
         $errors[] = "All fields are required except description.";
     } else {
-        $query = "UPDATE products SET name = ?, category_id = ?, price = ?, stock = ?, description = ? WHERE product_id = ?";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("sidisi", $name, $category_id, $price, $stock, $description, $product_id); // 6 variables
+        if (!empty($image)) {
+            // Check if image file is a actual image or fake image
+            $check = getimagesize($_FILES["image"]["tmp_name"]);
+            if ($check !== false) {
+                if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                    $query = "UPDATE products SET name = ?, category_id = ?, price = ?, stock = ?, description = ?, image = ? WHERE product_id = ?";
+                    $stmt = $conn->prepare($query);
+                    $stmt->bind_param("sidissi", $name, $category_id, $price, $stock, $description, $image, $product_id);
+                } else {
+                    $errors[] = "Sorry, there was an error uploading your file.";
+                }
+            } else {
+                $errors[] = "File is not an image.";
+            }
+        } else {
+            $query = "UPDATE products SET name = ?, category_id = ?, price = ?, stock = ?, description = ? WHERE product_id = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("sidisi", $name, $category_id, $price, $stock, $description, $product_id);
+        }
 
         if ($stmt->execute()) {
             $success = "Product updated successfully!";
@@ -83,7 +115,7 @@ if (isset($_GET["delete"])) {
 }
 
 // Fetch All Products
-$query = "SELECT p.product_id, p.name, p.category_id, p.price, p.stock, p.description, c.name AS category_name 
+$query = "SELECT p.product_id, p.name, p.category_id, p.price, p.stock, p.description, p.image, c.name AS category_name 
           FROM products p 
           LEFT JOIN categories c ON p.category_id = c.category_id";
 $result = $conn->query($query);
@@ -136,7 +168,7 @@ $categories = $categoriesResult->fetch_all(MYSQLI_ASSOC);
             <div class="card mb-4">
                 <div class="card-header bg-dark text-white">Add New Product</div>
                 <div class="card-body">
-                    <form method="POST">
+                    <form method="POST" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="name" class="form-label">Product Name</label>
                             <input type="text" class="form-control" id="name" name="name" required>
@@ -162,6 +194,10 @@ $categories = $categoriesResult->fetch_all(MYSQLI_ASSOC);
                             <label for="description" class="form-label">Description</label>
                             <textarea class="form-control" id="description" name="description"></textarea>
                         </div>
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Product Image</label>
+                            <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                        </div>
                         <button type="submit" name="create_product" class="btn btn-primary">Add Product</button>
                     </form>
                 </div>
@@ -180,6 +216,7 @@ $categories = $categoriesResult->fetch_all(MYSQLI_ASSOC);
                                 <th>Price</th>
                                 <th>Stock</th>
                                 <th>Description</th>
+                                <th>Image</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -192,6 +229,13 @@ $categories = $categoriesResult->fetch_all(MYSQLI_ASSOC);
                                     <td><?php echo $product["price"]; ?></td>
                                     <td><?php echo $product["stock"]; ?></td>
                                     <td><?php echo $product["description"]; ?></td>
+                                    <td>
+                                        <?php if (!empty($product["image"])): ?>
+                                            <img src="../uploads/products/<?php echo $product["image"]; ?>" alt="Product Image" width="50">
+                                        <?php else: ?>
+                                            No Image
+                                        <?php endif; ?>
+                                    </td>
                                     <td>
                                         <!-- Edit Button -->
                                         <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editProductModal<?php echo $product["product_id"]; ?>">
@@ -219,7 +263,7 @@ $categories = $categoriesResult->fetch_all(MYSQLI_ASSOC);
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST">
+                        <form method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="product_id" value="<?php echo $product["product_id"]; ?>">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Product Name</label>
@@ -246,6 +290,13 @@ $categories = $categoriesResult->fetch_all(MYSQLI_ASSOC);
                             <div class="mb-3">
                                 <label for="description" class="form-label">Description</label>
                                 <textarea class="form-control" id="description" name="description"><?php echo $product["description"]; ?></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Product Image</label>
+                                <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                                <?php if (!empty($product["image"])): ?>
+                                    <img src="../uploads/products/<?php echo $product["image"]; ?>" alt="Product Image" width="100" class="mt-2">
+                                <?php endif; ?>
                             </div>
                             <button type="submit" name="update_product" class="btn btn-primary">Update Product</button>
                         </form>

@@ -1,3 +1,41 @@
+<?php
+// Start session only if not already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+require_once __DIR__ . '/../includes/db/functions.php';
+
+$functions = new Functions();
+$cartItems = $functions->getCartItems();
+
+// Debug output - helps track cart state
+error_log("Cart State Before Calculation: " . print_r($_SESSION['cart'] ?? 'No cart', true));
+
+// Calculate cart count - final robust version
+$cartCount = 0;
+if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
+    // Clean up any empty or invalid entries first
+    $_SESSION['cart'] = array_filter($_SESSION['cart'], function ($quantity) {
+        return is_numeric($quantity) && $quantity > 0;
+    });
+
+    $cartCount = array_sum($_SESSION['cart']);
+
+    // If we ended up with zero, completely unset the cart
+    if ($cartCount === 0) {
+        unset($_SESSION['cart']);
+    }
+}
+
+// Debug output - verify final count
+error_log("Final Cart Count: " . $cartCount);
+
+$subtotal = 0;
+foreach ($cartItems as $item) {
+    $subtotal += $item['price'] * $item['quantity'];
+}
+?>
 <!-- header-area-start -->
 <header>
     <div class="header__top theme-bg-1 d-none d-md-block">
@@ -40,7 +78,7 @@
                                         <a href="#">Blog</a>
                                     </li>
                                     <li>
-                                        <a href="#">Shop</a>
+                                        <a href="shop.php">Shop</a>
                                     </li>
                                     <li><a href="#">About Us</a></li>
                                     <li><a href="#">Contact Us</a></li>
@@ -59,39 +97,39 @@
                             <div class="header__info-user tpcolor__yellow ml-10">
                                 <a href="profile.php"><i class="icon-user"></i></a>
                             </div>
-                            <div class="header__info-wishlist tpcolor__greenish ml-10">
-                                <a href="#"><i class="icon-heart icons"></i></a>
-                            </div>
-
-                            <div class="header__info-cart tpcolor__oasis ml-10 tp-cart-toggle">
-                                <button><i><img src="assets/img/icon/cart-1.svg" alt=""></i>
-                                    <span>5</span>
-                                </button>
-                            </div>
-                            <div class="header__info-wishlist header__info-signout tpcolor__greenish ml-10">
-                                <?php
-
-                                // Check if user is logged in
-                                if (isset($_SESSION["user_id"])) {
-                                ?>
-                                    <a href="includes/logout.php">
-                                        <i class="signout-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
-                                                <path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z" />
-                                            </svg>
-                                        </i>
-                                    </a>
-                                <?php
-                                }
-                                ?>
-                            </div>
+                            <?php
+                            // Check if user is logged in
+                            if (isset($_SESSION["user_id"])) {
+                            ?>
+                                <div class="header__info-wishlist tpcolor__greenish ml-10">
+                                    <a href="wishlist.php"><i class="icon-heart icons"></i></a>
+                                </div>
+                                <div class="header__info-cart tpcolor__oasis ml-10 tp-cart-toggle">
+                                    <button>
+                                        <i><img src="assets/img/icon/cart-1.svg" alt=""></i>
+                                        <span><?php echo $cartCount; ?></span>
+                                    </button>
+                                </div>
+                                <div class="header__info-wishlist header__info-signout tpcolor__greenish ml-10">
+                                    <?php if (isset($_SESSION["user_id"])): ?>
+                                        <a href="includes/logout.php" onclick="return confirm('Are you sure you want to logout?')">
+                                            <i class="signout-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                    <path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z" />
+                                                </svg>
+                                            </i>
+                                        </a>
+                                    <?php endif; ?>
+                                </div>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- header-search -->
     <div class="tpsearchbar tp-sidebar-area">
         <button class="tpsearchbar__close"><i class="icon-x"></i></button>
@@ -121,79 +159,64 @@
             <h4 class="tpcart__title">Your Cart</h4>
             <div class="tpcart__product">
                 <div class="tpcart__product-list">
-                    <ul>
-                        <li>
-                            <div class="tpcart__item">
-                                <div class="tpcart__img">
-                                    <img src="assets/img/product/products1-min.jpg" alt="">
-                                    <div class="tpcart__del">
-                                        <a href="#"><i class="icon-x-circle"></i></a>
+                    <?php if (!empty($cartItems)): ?>
+                        <ul>
+                            <?php foreach ($cartItems as $item): ?>
+                                <li>
+                                    <div class="tpcart__item">
+                                        <div class="tpcart__img">
+                                            <img src="./uploads/products/<?php echo htmlspecialchars($item['image']); ?>"
+                                                alt="<?php echo htmlspecialchars($item['name']); ?>"
+                                                onerror="this.src='assets/img/product/default-product.jpg'">
+                                            <div class="tpcart__del">
+                                                <a href="remove_from_cart.php?product_id=<?php echo $item['product_id']; ?>">
+                                                    <i class="icon-x-circle"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="tpcart__content">
+                                            <span class="tpcart__content-title">
+                                                <a href="shop-details.php?product_id=<?php echo $item['product_id']; ?>">
+                                                    <?php echo htmlspecialchars($item['name']); ?>
+                                                </a>
+                                            </span>
+                                            <div class="tpcart__cart-price">
+                                                <span class="quantity"><?php echo $item['quantity']; ?> x</span>
+                                                <span class="new-price">$<?php echo number_format($item['price'], 2); ?></span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="tpcart__content">
-                                    <span class="tpcart__content-title"><a href="#">Stacy's Pita Chips Parmesan Garlic & Herb From Nature</a>
-                                    </span>
-                                    <div class="tpcart__cart-price">
-                                        <span class="quantity">1 x</span>
-                                        <span class="new-price">$162.80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="tpcart__item">
-                                <div class="tpcart__img">
-                                    <img src="assets/img/product/products12-min.jpg" alt="">
-                                    <div class="tpcart__del">
-                                        <a href="#"><i class="icon-x-circle"></i></a>
-                                    </div>
-                                </div>
-                                <div class="tpcart__content">
-                                    <span class="tpcart__content-title"><a href="#">Banana, Beautiful Skin, Good For Health 1Kg</a>
-                                    </span>
-                                    <div class="tpcart__cart-price">
-                                        <span class="quantity">1 x</span>
-                                        <span class="new-price">$138.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="tpcart__item">
-                                <div class="tpcart__img">
-                                    <img src="assets/img/product/products3-min.jpg" alt="">
-                                    <div class="tpcart__del">
-                                        <a href="#"><i class="icon-x-circle"></i></a>
-                                    </div>
-                                </div>
-                                <div class="tpcart__content">
-                                    <span class="tpcart__content-title"><a href="#">Quaker Popped Rice Crisps Snacks Chocolate</a>
-                                    </span>
-                                    <div class="tpcart__cart-price">
-                                        <span class="quantity">1 x</span>
-                                        <span class="new-price">$162.8</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php else: ?>
+                        <p class="text-center">Your cart is empty</p>
+                    <?php endif; ?>
                 </div>
-                <div class="tpcart__checkout">
-                    <div class="tpcart__total-price d-flex justify-content-between align-items-center">
-                        <span> Subtotal:</span>
-                        <span class="heilight-price"> $300.00</span>
+
+                <?php if (!empty($cartItems)): ?>
+                    <div class="tpcart__checkout">
+                        <div class="tpcart__total-price d-flex justify-content-between align-items-center">
+                            <span>Subtotal:</span>
+                            <span class="heilight-price">$<?php echo number_format($subtotal, 2); ?></span>
+                        </div>
+                        <div class="tpcart__checkout-btn">
+                            <a class="tpcart-btn mb-10" href="cart.php">View Cart</a>
+                            <a class="tpcheck-btn" href="checkout.php">Checkout</a>
+                        </div>
                     </div>
-                    <div class="tpcart__checkout-btn">
-                        <a class="tpcart-btn mb-10" href="#">View Cart</a>
-                        <a class="tpcheck-btn" href="#">Checkout</a>
-                    </div>
-                </div>
+                <?php endif; ?>
             </div>
-            <div class="tpcart__free-shipping text-center">
+            <!-- <div class="tpcart__free-shipping text-center">
                 <span>Free shipping for orders <b>under 10km</b></span>
-            </div>
+            </div> -->
         </div>
     </div>
+    <div class="cartbody-overlay"></div>
+    <!-- header-cart-end -->
+
+    <!-- Update the cart icon count in your header -->
+
     <div class="cartbody-overlay"></div>
     <!-- header-cart-end -->
 
@@ -219,14 +242,22 @@
                         <div class="header__info-user tpcolor__yellow ml-10 d-none d-sm-block">
                             <a href="#"><i class="icon-user"></i></a>
                         </div>
-                        <div class="header__info-wishlist tpcolor__greenish ml-10 d-none d-sm-block">
-                            <a href="#"><i class="icon-heart icons"></i></a>
-                        </div>
-                        <div class="header__info-cart tpcolor__oasis ml-10 tp-cart-toggle">
-                            <button><i><img src="assets/img/icon/cart-1.svg" alt=""></i>
-                                <span>5</span>
-                            </button>
-                        </div>
+                        <?php
+                        // Check if user is logged in
+                        if (isset($_SESSION["user_id"])) {
+                        ?>
+                            <div class="header__info-wishlist tpcolor__greenish ml-10 d-none d-sm-block">
+                                <a href="#"><i class="icon-heart icons"></i></a>
+                            </div>
+                            <div class="header__info-cart tpcolor__oasis ml-10 tp-cart-toggle">
+                                <button>
+                                    <i><img src="assets/img/icon/cart-1.svg" alt=""></i>
+                                    <span><?php echo $cartCount; ?></span>
+                                </button>
+                            </div>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
