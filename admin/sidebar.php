@@ -13,7 +13,9 @@
     <!-- <a href="categories.php">📂 Manage Categories</a>
     <a href="products.php">🛒 Manage Products</a>
     <a href="orders.php">📦 View Orders</a>
-    <a href="orderdetails.php">📜 Order Details</a>
+    <a href="orderdetails.php">📜 Address</a>
     <a href="recentlyviewed.php">👀 Recently Viewed</a>
-    <a href="logout.php">🚪 Logout</a> -->
+    <a href="banners.php">🖼 Manage Banners</a>
+    <a href="blogs.php">✍ Manage Blogs</a>
+    <a href="logout.php">🚪 Logout</a>
 </nav>

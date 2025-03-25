@@ -1,46 +1,67 @@
 /* Sidebar styling */
 .sidebar {
-    height: 100vh;
-    width: 250px;
-    position: fixed;
-    left: 0;
-    top: 0;
-    background-color: #343a40;
-    padding-top: 20px;
+  height: 100vh;
+  width: 250px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: #343a40;
+  padding-top: 20px;
 }
 
 .sidebar a {
-    padding: 12px 20px;
-    display: block;
-    color: #ffffff;
-    text-decoration: none;
-    transition: 0.3s;
+  padding: 12px 20px;
+  display: block;
+  color: #ffffff;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
 .sidebar a:hover {
-    background-color: #495057;
+  background-color: #495057;
 }
 
 /* Main Content */
 .content {
-    margin-left: 260px;
-    padding: 20px;
+  margin-left: 260px;
+  padding: 20px;
 }
 
 /* Dashboard Header */
 .dashboard-header {
-    background-color: #007bff;
-    padding: 15px;
-    color: white;
-    text-align: center;
+  background-color: #007bff;
+  padding: 15px;
+  color: white;
+  text-align: center;
 }
 
 /* Card Styling */
 .card {
-    border-radius: 10px;
-    transition: 0.3s;
+  border-radius: 10px;
+  transition: 0.3s;
 }
 
 .card:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.preview-img {
+  max-width: 100px;
+  margin-right: 10px;
+}
+.preview-box {
+  position: relative;
+  display: inline-block;
+}
+.remove-img-btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 }

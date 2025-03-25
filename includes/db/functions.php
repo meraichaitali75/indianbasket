@@ -34,7 +34,7 @@ class Functions
         $password = trim($password);
         $confirm_password = trim($confirm_password);
 
-        // ✅ Set provider for manual registrations
+        //  Set provider for manual registrations
         $provider = "manual";
 
         // Name validation
@@ -49,7 +49,7 @@ class Functions
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $errors[] = "Invalid email format.";
         } else {
-            // ✅ Check if email already exists
+            //  Check if email already exists
             $stmt = $this->db->conn->prepare("SELECT provider FROM users WHERE email = ?");
             $stmt->bind_param("s", $email);
             $stmt->execute();
@@ -88,15 +88,15 @@ class Functions
             return $errors;
         }
 
-        // ✅ Encrypt password before inserting
+        //  Encrypt password before inserting
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-        // ✅ Insert user into database
+        //  Insert user into database
         $stmt = $this->db->conn->prepare("INSERT INTO users (firstname, lastname, email, password, provider, gender) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("ssssss", $firstname, $lastname, $email, $hashed_password, $provider, $gender);
 
         if ($stmt->execute()) {
-            return "success"; // ✅ Ensure `register.php` checks for this
+            return "success"; //  Ensure `register.php` checks for this
         } else {
             return "Error: " . $stmt->error;
         }
@@ -349,7 +349,7 @@ class Functions
     // Add Billing address
     public function addBillingAddress($user_id, $firstname, $lastname, $email, $phone, $country, $province, $city, $street_address, $zip_code, $landmark, $address_type)
     {
-        echo "Function addBillingAddress() is being called!<br>"; // ✅ Debug line
+        echo "Function addBillingAddress() is being called!<br>"; //  Debug line
 
         // Debug input values
         echo "<pre>";
@@ -512,7 +512,7 @@ class Functions
         SELECT p.*, c.name AS category_name 
         FROM products p
         LEFT JOIN categories c ON p.category_id = c.category_id
-    ");
+        ");
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -531,7 +531,7 @@ class Functions
         FROM products p
         LEFT JOIN categories c ON p.category_id = c.category_id
         WHERE p.category_id = ?
-    ");
+        ");
         $stmt->bind_param("i", $category_id);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -583,7 +583,7 @@ class Functions
         LEFT JOIN categories c ON p.category_id = c.category_id
         WHERE p.category_id = ? AND p.product_id != ?
         LIMIT 4
-    ");
+        ");
         $stmt->bind_param("ii", $category_id, $exclude_product_id);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -604,7 +604,7 @@ class Functions
         LEFT JOIN categories c ON p.category_id = c.category_id
         ORDER BY p.product_id DESC
         LIMIT ?
-    ");
+        ");
         $stmt->bind_param("i", $limit);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -622,7 +622,7 @@ class Functions
         SELECT image_path 
         FROM product_images 
         WHERE product_id = ?
-    ");
+        ");
         $stmt->bind_param("i", $product_id);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -892,4 +892,148 @@ class Functions
         }
         return $posts;
     }
+
+    // Edit Billing Address
+    // public function editBillingAddress($address_id, $firstname, $lastname, $email, $phone, $country, $province, $city, $street_address, $zip_code, $landmark, $address_type)
+    // {
+    //     // Input sanitization
+    //     $firstname = $this->sanitize($firstname);
+    //     $lastname = $this->sanitize($lastname);
+    //     $email = $this->sanitize($email);
+    //     $phone = $this->sanitize($phone);
+    //     $country = $this->sanitize($country);
+    //     $province = $this->sanitize($province);
+    //     $city = $this->sanitize($city);
+    //     $street_address = $this->sanitize($street_address);
+    //     $zip_code = $this->sanitize($zip_code);
+    //     $landmark = $this->sanitize($landmark);
+    //     $address_type = $this->sanitize($address_type);
+
+    //     // Update the address in the database
+    //     $stmt = $this->db->conn->prepare("UPDATE billing_addresses SET firstname = ?, lastname = ?, email = ?, phone = ?, country = ?, province = ?, city = ?, street_address = ?, zip_code = ?, landmark = ?, address_type = ? WHERE address_id = ?");
+    //     $stmt->bind_param("sssssssssssi", $firstname, $lastname, $email, $phone, $country, $province, $city, $street_address, $zip_code, $landmark, $address_type, $address_id);
+
+    //     if ($stmt->execute()) {
+    //         return "success";
+    //     } else {
+    //         return "Error: " . $stmt->error;
+    //     }
+    // }
+
+    // Delete Billing Address
+    // public function deleteBillingAddress($address_id)
+    // {
+    //     $stmt = $this->db->conn->prepare("DELETE FROM billing_addresses WHERE address_id = ?");
+    //     $stmt->bind_param("i", $address_id);
+
+    //     if ($stmt->execute()) {
+    //         return "success";
+    //     } else {
+    //         return "Error: " . $stmt->error;
+    //     }
+    // }
+
+    // Function to change user password
+    // public function changePassword($user_id, $currentPassword, $newPassword, $confirmPassword)
+    // {
+    //     // Input sanitization
+    //     $currentPassword = trim($currentPassword);
+    //     $newPassword = trim($newPassword);
+    //     $confirmPassword = trim($confirmPassword);
+
+    //     // Validate inputs
+    //     if (empty($currentPassword)) {
+    //         return "Current password is required.";
+    //     }
+    //     if (empty($newPassword)) {
+    //         return "New password is required.";
+    //     }
+    //     if (empty($confirmPassword)) {
+    //         return "Confirm new password is required.";
+    //     }
+    //     if ($newPassword !== $confirmPassword) {
+    //         return "New passwords do not match.";
+    //     }
+
+    //     // Check if the new password meets the requirements
+    //     if (!preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/", $newPassword)) {
+    //         return "New password must be at least 8 characters long, contain an uppercase letter, lowercase letter, a number, and a special character.";
+    //     }
+
+    //     // Fetch the current password from the database
+    //     $stmt = $this->db->conn->prepare("SELECT password FROM users WHERE user_id = ?");
+    //     $stmt->bind_param("i", $user_id);
+    //     $stmt->execute();
+    //     $stmt->store_result();
+    //     $stmt->bind_result($hashed_password);
+    //     $stmt->fetch();
+
+    //     // Verify the current password
+    //     if (!password_verify($currentPassword, $hashed_password)) {
+    //         return "Current password is incorrect.";
+    //     }
+
+    //     // Hash the new password
+    //     $newHashedPassword = password_hash($newPassword, PASSWORD_BCRYPT);
+
+    //     // Update the password in the database
+    //     $stmt = $this->db->conn->prepare("UPDATE users SET password = ? WHERE user_id = ?");
+    //     $stmt->bind_param("si", $newHashedPassword, $user_id);
+
+    //     if ($stmt->execute()) {
+    //         return "success";
+    //     } else {
+    //         return "Error: " . $stmt->error;
+    //     }
+    // }
+    // Function to display all categories
+    // public function getAllCategories()
+    // {
+    //     $stmt = $this->db->conn->prepare("SELECT * FROM categories");
+    //     $stmt->execute();
+    //     $result = $stmt->get_result();
+
+    //     $categories = [];
+    //     while ($row = $result->fetch_assoc()) {
+    //         $categories[] = $row;
+    //     }
+    //     return $categories;
+    // }
+
+    // Fetch latest 5 categories
+    // public function getLatestCategories($limit = 5)
+    // {
+    //     $sql = "SELECT * FROM categories ORDER BY category_id DESC LIMIT $limit";
+    //     $result = $this->db->conn->query($sql);
+    //     $categories = [];
+    //     if ($result->num_rows > 0) {
+    //         while ($row = $result->fetch_assoc()) {
+    //             $categories[] = $row;
+    //         }
+    //     }
+    //     return $categories;
+    // }
+    // Function to display all products
+    // public function getAllProducts()
+    // {
+    //     $stmt = $this->db->conn->prepare("
+    //     SELECT p.*, c.name AS category_name 
+    //     FROM products p
+    //     LEFT JOIN categories c ON p.category_id = c.category_id
+    //     ");
+    //     $stmt->execute();
+    //     $result = $stmt->get_result();
+
+    //     $products = [];
+    //     while ($row = $result->fetch_assoc()) {
+    //         $products[] = $row;
+    //     }
+    //     return $products;
+    // }
+    // public function getAllBanners()
+    // {
+    //     $query = "SELECT * FROM banners ORDER BY created_at DESC";
+    //     $result = $this->db->conn->query($query);
+    //     return $result->fetch_all(MYSQLI_ASSOC);
+    // }
 }
