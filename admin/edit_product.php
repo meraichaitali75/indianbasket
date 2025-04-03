@@ -160,21 +160,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_product"])) {
     // Only proceed with database operations if no errors
     if (empty($errors)) {
         // Prepare product data
-        $name = trim($_POST["name"]);
-        $category_id = intval($_POST["category_id"]);
-        $price = floatval($_POST["price"]);
-        $stock = intval($_POST["stock"]);
-        $description = trim($_POST["description"]);
-        $material = trim($_POST["material"]);
-        $legs = trim($_POST["legs"]);
-        $dimensions = trim($_POST["dimensions"]);
-        $length = trim($_POST["length"]);
-        $depth = trim($_POST["depth"]);
-        $additional_details = trim($_POST["additional_details"]);
-        $video_url = trim($_POST["video_url"]);
-        $type = trim($_POST["type"]);
-        $mfg_date = !empty($_POST["mfg_date"]) ? $_POST["mfg_date"] : null;
-        $life_days = intval($_POST["life_days"]);
+        
+         $name = trim($_POST["name"]);
+         $category_id = intval($_POST["category_id"]);
+         $price = floatval($_POST["price"]);
+         $stock = intval($_POST["stock"]);
+         $description = trim($_POST["description"]);
+         $material = trim($_POST["material"]);
+         $legs = trim($_POST["legs"]);
+         $dimensions = trim($_POST["dimensions"]);
+         $length = trim($_POST["length"]);
+         $depth = trim($_POST["depth"]);
+         $additional_details = trim($_POST["additional_details"]);
+         $video_url = trim($_POST["video_url"]);
+         $type = trim($_POST["type"]);
+         $mfg_date = !empty($_POST["mfg_date"]) ? $_POST["mfg_date"] : null;
+         $life_days = intval($_POST["life_days"]);
 
         // Update product
         $query = "UPDATE products SET 
@@ -184,7 +185,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_product"])) {
                  WHERE product_id=?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param(
-            "sidissssssssssssi",
+            "sidissssssssssssi", // Fixed type string (17 characters)
             $name,
             $category_id,
             $price,
